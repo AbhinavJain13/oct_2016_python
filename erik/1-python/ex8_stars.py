@@ -14,6 +14,8 @@ def fullOfStars2(ary):
             print value[0]*len(value)
 fullOfStars2(data)
 
+# - - - - - - - - - - - - - - - - - - -
+
 one = '6'
 vals = dict(one=1, two=2)
 print vals
@@ -26,3 +28,14 @@ print vals2
 firstday = "Sun"
 weekend = { firstday: "Sunday", "Mon": "Monday" }
 print weekend
+
+d = { i: object() for i in range(4) }
+print d
+
+capitals = {} #create an empty dictionary then add values
+capitals["svk"] = "Bratislava"
+capitals["dkd"] = ["here","there","nowhere"]
+print capitals
+print str(capitals)
+print capitals.items()
+# [('dkd', ['here', 'there', 'nowhere']), ('svk', 'Bratislava')]
