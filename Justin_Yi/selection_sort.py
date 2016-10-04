@@ -4,9 +4,7 @@ def selectionSort(sort):
         for i in range(num):
             if sort[i] > sort[minimum]:
                 minimum = i
-        temp = sort[num]
-        sort[num] = sort[minimum]
-        sort[minimum] = temp
+        (sort[num], sort[minimum])= (sort[minimum], sort[num])
         print sort
 
 
