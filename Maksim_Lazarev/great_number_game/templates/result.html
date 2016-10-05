@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dojo Survey Index</title>
+    <!-- linking a css style sheet -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Dojo Survey</h1>
+      <br><form class="" action="/" method="get">
+      <h3><u>Submitted Info</u></h3>
+      <table>
+        <tr>
+          <td>Name:</td>
+          <td>{{name}}</td>
+        </tr>
+        <tr>
+          <td>Dojo Location:</td>
+          <td>{{location}}</td>
+        </tr>
+        <tr>
+          <td>Favorite Language:</td>
+          <td>{{language}}</td>
+        </tr>
+        <tr>
+          <td>Comment:</td>
+          <td>{{comment}}</td>
+        </tr>
+      </table>
+      <button type="submit" name="btnBack">Go Back</button>
+      </form>
+    </div>
+
+
+<!-- linking a javascript file -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!-- linking an image -->
+<!-- <img src="{{ url_for('static', filename='img/img.png') }}"> -->
+  </body>
+</html>

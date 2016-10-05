@@ -1,0 +1,18 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+#container{
+  border: 1 px solid black;
+margin: auto;
+width: 700px;
+}
+#box{
+  border: solid 1px black;
+  width: 300px;
+  height: auto;
+  padding: 20px;
+}
+form{
+  width: 300px;
+}
