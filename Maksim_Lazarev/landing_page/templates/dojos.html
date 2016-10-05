@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Landing Page - Ninjas</title>
+    <!-- linking a css style sheet -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>DOJOS!!!</h1>
+      <br><h3>Hello, {{greeting}}!</h3>
+      <br><form class="" action="index.html" method="post">
+      <input type="text" name="first_name" value="First Name">
+      <input type="text" name="last_name" value="Last Name">
+      <button type="submit" name="btnSubmit">Submit</button>
+      </form>
+
+    </div>
+
+
+<!-- linking a javascript file -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!-- linking an image -->
+<!-- <img src="{{ url_for('static', filename='img/img.png') }}"> -->
+  </body>
+</html>

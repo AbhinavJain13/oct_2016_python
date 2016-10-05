@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dojo Survey Index</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Welcome to the Great Number Game!</h1>
+      <br><h3>I am thinking of a nunmber between 1 and 100</h3>
+      <br><h3>Take a guess</h3>
+      <!-- <br><h1>{{session["rndNum"]}}</h1> -->
+      {% if (session['userNum']) %}
+      {% if session['userNum'] > session["rndNum"] %}
+      <div class="red">
+        <h1>Too high!</h1>
+      </div>
+      <br><br><form class="student" action="/result" method="post">
+      <input type="text" name="number" value="">
+      <input type="hidden" name="action" value="play">
+      <button type="submit" name="btnSubmit">Submit</button>
+      </form>
+      {% elif session['userNum'] < session["rndNum"] %}
+      <div class="red">
+        <h1>Too low!</h1>
+      </div>
+      <br><br><form class="student" action="/result" method="post">
+      <input type="text" name="number" value="">
+      <input type="hidden" name="action" value="play">
+      <button type="submit" name="btnSubmit">Submit</button>
+      </form>
+      {% elif session['userNum'] == session["rndNum"] %}
+      <div class="green">
+        <h1>{{session["rndNum"]}} was the number</h1>
+      </div><br><br><form class="student" action="/result" method="post">
+      <input type="hidden" name="action" value="reset">
+      <button type="submit" name="btnSubmit">Play again!</button>
+      </form>
+      {% endif %}
+      {% else %}
+      <br><br><form class="student" action="/result" method="post">
+      <input type="text" name="number" value="">
+      <input type="hidden" name="action" value="play">
+      <button type="submit" name="btnSubmit">Submit</button>
+      </form>
+      {% endif %}
+    </div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
