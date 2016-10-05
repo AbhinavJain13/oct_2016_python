@@ -1,4 +1,4 @@
-#import datetime
+
 import time
 import random
 from random import randint
@@ -20,19 +20,19 @@ def bubbleicious():
     i = 0
     x = 0
     temp = 0
-    # with all set ups complete, start the clock...
+    # with all set-ups complete, start the clock...
     startTime = time.time()
     while x in range(0,runTimes):
         while i in range(0,runTimes) and count != runTimes:
             if ary[i] > ary[i+1]:
-                #do the swap
+                # do the swap
                 temp = ary[i+1]
                 ary[i+1] = ary[i]
                 ary[i] = temp
-                count = 0 # reset the tracking counter
+                count = 0 # reset the no swap tracking counter
                 i = i+1
             else:
-                count +=1 # increment count for each NO swap
+                count +=1 # for each successful no swap
                 i+=1
         i=0
         x+=1

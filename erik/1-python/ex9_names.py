@@ -24,11 +24,13 @@ users = {
 
 for key,data in users.items():
         print key.title()
+        count = 1
         for val in data:
             joinedname = ''
             for key, itm in val.items():
                 joinedname = joinedname + ' ' + itm
-            print joinedname
+            print count, "-",joinedname
+            count +=1
 
 # source envName/bin/activate
 
