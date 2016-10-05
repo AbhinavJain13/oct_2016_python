@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <title>Coding Dojo Survey</title>
+       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='survey.css') }}"><!-- linking a javascript file -->
+       <script type="text/javascript" src="{{ url_for('static', filename='survey.js') }}"></script>
+
+    </head>
+    <body>
+
+      <form class = "form" action='/result' method='post'>
+          Your Name: <input type='text' name="name">
+          Dojo Locations:
+          <select name ="location">
+
+            <option value="Seattle">Seattle</option>
+            <option value="SF">SFO</option>
+            <option value="NY">NY</option>
+            <option value="Ind">INDIA</option>
+          </select>
+          Language<select name = "language">
+            <option value="Python">Python</option>
+            <option value="MEAN">MEAN</option>
+            <option value="c">C</option>
+            <option value="csharp">CSharp</option>
+          </select>
+          <label> Comment(Optional):<input type="textarea" rows="4" cols="50" name="comment" ></label>
+          <input type='submit' value='create_user'>
+      </form>
+
+
+    </body>
+</html>
