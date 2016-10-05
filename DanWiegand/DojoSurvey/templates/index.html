@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <title>Form Test Index</title>
+    </head>
+    <body>
+      <form action='/results' method='post' id="survey">
+          Your Name: <input type='text' name='name' id="name"> <br>
+          Dojo Location: <select name="location" id="location"> <br>
+            <option value="seattle">Seattle</option>
+            <option value="siliconvalley">Silicon Valley</option>
+            <option value="la">L.A.</option>
+            <option value="dallas">Dallas</option>
+            <option value="dc">Washington DC</option>
+            <option value="chicago">Chicago</option>
+          </select>
+        <br>  Favorite Language: <select name="language" id="language"> <br>
+            <option value="python">Python</option>
+            <option value="js">Javascript</option>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+          </select>
+        <br>  Comment (optional): <br>
+          <!-- <input type="textarea" name="name" value="" id="comment"> -->
+          <textarea name="comment" id="comment" rows="8" cols="40"></textarea>
+        <br>  <input type="submit" name="button" value="Lets Go!">
+      </form>
+    </body>
+</html>
