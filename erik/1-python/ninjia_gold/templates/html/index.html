@@ -17,11 +17,20 @@
       <input type='submit' name="casino" value='Find Gold!'>
    </form>
 
+   <div style="width:500px;height:300px;overflow-y:auto;border:1px solid black;">
+      <div style="">
+         {% for val in session['log']: %}
+            <p class="{{ "green" if val['amount'] > 0 else "red" }}">
+               {% if val['amount'] > 0 %}
+               Earned {{ val['amount'] }} from {{ val['source'] }} {{ val['when']}}!!
+               {% else: %}
+               Entered a {{ val['source'] }} after drinking and lost {{ val['amount'] }} {{ val['when']}}!!
+               {% endif %}
+            </p>
+         {% endfor %}
+      </div>
+   </div>
 
-      {% for val in session['log']: %}
-          {{ val }}
-
-      {% endfor %}
 
 
    </body>

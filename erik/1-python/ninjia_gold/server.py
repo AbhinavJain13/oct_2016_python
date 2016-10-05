@@ -1,4 +1,6 @@
 from flask import Flask,render_template,request,redirect,session
+import datetime
+import time
 import random
 from random import randint
 
@@ -9,20 +11,18 @@ app.secret_key="OnlyInAJeep"
 # default route
 @app.route("/")
 def index():
+    # CREATE OR ADD TO THE TOTAL
     if not 'total' in session:
         session['total'] = 0
     else:
         session['total'] += session['factor']
-
-        #session.pop('log')
-
+    # CREATE OR ADD TO THE LOG
     if not 'log' in session:
+        print "There was no log, so one was created for you."
         session['log']=[]
     else:
-        #print ("add it to the log, baby",session['newentry'])
-        #session['log'].append({'can be the same':'can also be the same'})
         session['log'].append(session['newentry'])
-        #session.pop('newentry')
+        #session.pop('log') USE TO RESET LOG
 
     return render_template("html/index.html")
 
@@ -46,14 +46,10 @@ def process_guess():
         session['choice'] = 'house'
     else:
         session['choice'] = 'casino'
-    # convert choice to a number
+    # convert choice to a number via getRand dictionary...
     session['factor']=getRand[session['choice']]
-
-    print ("youre random allotment is:",session['factor'])
-    print 'the button you clicked: ',session['choice']
-
-    session['newentry'] = {'amount':session['factor'],'source':session['choice']}
-    #session['newentry'] = {'amount':'the amount','source':'the source'}
+    # create the log entry
+    session['newentry'] = {'amount':session['factor'],'source':session['choice'],'when':datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')}
 
     return redirect('/')
 
