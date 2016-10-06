@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,session
+from flask import Flask,render_template,request,redirect,session,flash
 import datetime
 import time
 import random
@@ -21,7 +21,7 @@ def index():
         print "There was no log, so one was created for you."
         session['log']=[]
     else:
-        session['log'].append(session['newentry'])
+        session['log'].insert(0,session['newentry'])
         #session.pop('log') USE TO RESET LOG
 
     return render_template("html/index.html")
@@ -46,6 +46,13 @@ def process_guess():
         session['choice'] = 'house'
     else:
         session['choice'] = 'casino'
+
+    # ADDING VALIDATION
+    # if len(session['choice']) <1:
+    #     flash("Enter a value, please.")
+    # else:
+    #     flash("Success! Your name is {}".format(request.form['factor']))
+
     # convert choice to a number via getRand dictionary...
     session['factor']=getRand[session['choice']]
     # create the log entry
