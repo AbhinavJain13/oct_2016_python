@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dojo Survey With Validation</title>
+    <!-- linking a css style sheet -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Dojo Survey With Validation</h1>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+              <br><p class="red">{{message}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <br><form class="student" action="/process" method="post">
+        <div class="block">
+          <label for="name">Your Name:</label>
+          <input type="text" name="name" value="">
+        </div>
+        <div class="block">
+          <label for="location">Dojo Locatiton:</label>
+          <select name="location">
+            <option value="San_Hose">San Jose</option>
+            <option value="Seattle" selected>Seattle</option>
+            <option value="Chicago">Chicago</option>
+            <option value="Dallas">Dallas</option>
+          </select>
+        </div>
+        <div class="block">
+          <label for="language">Favorite Language:</label>
+          <select name="language">
+            <option value="Python">Python</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="HTML">HTML</option>
+            <option value="C#" selected>C#</option>
+          </select>
+        </div>
+        <div class="block">
+          <label for="comment">Comment (optional):</label>
+          <input id="comment" type="tex" name="comment" value="">
+        </div>
+      <button type="submit" name="btnSubmit">Submit</button>
+      </form>
+    </div>
+
+
+<!-- linking a javascript file -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!-- linking an image -->
+<!-- <img src="{{ url_for('static', filename='img/img.png') }}"> -->
+  </body>
+</html>
