@@ -47,12 +47,6 @@ def process_guess():
     else:
         session['choice'] = 'casino'
 
-    # ADDING VALIDATION
-    # if len(session['choice']) <1:
-    #     flash("Enter a value, please.")
-    # else:
-    #     flash("Success! Your name is {}".format(request.form['factor']))
-
     # convert choice to a number via getRand dictionary...
     session['factor']=getRand[session['choice']]
     # create the log entry
