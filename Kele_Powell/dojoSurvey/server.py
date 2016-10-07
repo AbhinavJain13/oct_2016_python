@@ -10,8 +10,7 @@ def data():
     location=request.form['dojo']
     language=request.form['language']
     comments=request.form['comments']
-    return render_template('submitted.html',name=name, location=location, language=language, comments=comments )
-@app.route('/submit')
-def submit():
-    return render_template('submitted.html')
+    return  render_template('submitted.html',name=name, location=location, language=language, comments=comments )
+    redirect
+
 app.run(debug=True)
