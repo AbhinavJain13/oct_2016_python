@@ -33,13 +33,13 @@ def create():
 
 # /friends/<friend_id>
 # Show a single friend by id
-@app.route('/friends/<id>')
-def show(id):
+@app.route('/friends/<friend_id>')
+def show(friend_id):
     # to insert param variable :variable_name
-    query = "SELECT * FROM friends WHERE id = :id"
+    query = "SELECT * FROM friends WHERE id = :specific_id"
     # Then define a dictionary with key that matches :variable_name in query.
-    print "friend data: ", id
-    data = {'id': id}
+    print "friend data: ", friend_id
+    data = {'specific_id': friend_id}
     print "query data:",data
     # Execute query, passing in a parameter obj
     friends = mysql.query_db(query, data)
@@ -48,25 +48,24 @@ def show(id):
 
 # /update_friend/<friend_id>
 # Update a friend by id
-# /friends/<id>/edit
-@app.route('/friends/<id>/edit', methods=['POST'])
-def update(id):
+@app.route('/update_friend/<friend_id>', methods=['POST'])
+def update(friend_id):
     query = "UPDATE friends SET first_name = :first_name, last_name = :last_name, occupation = :occupation WHERE id = :id"
     data = {
-             'first_name':  request.form['first_name'],
-             'last_name':   request.form['last_name'],
-             'occupation':  request.form['occupation'],
-             'id':          request.form['id']
+             'first_name': request.form['first_name'],
+             'last_name':  request.form['last_name'],
+             'occupation': request.form['occupation'],
+             'id': friend_id
            }
     mysql.query_db(query, data)
     return redirect('/')
 
-# /friends/<id>/delete
-# Delete a friend by id
-@app.route('/friends/<id>/delete', methods=['POST'])
-def delete(id):
+# /unfriend/<friend_id>
+# Remove a friend by id
+@app.route('/remove_friend/<friend_id>', methods=['POST'])
+def delete(friend_id):
     query = "DELETE FROM friends WHERE id = :id"
-    data = {'id': id}
+    data = {'id': friend_id}
     mysql.query_db(query, data)
     return redirect('/')
 
