@@ -6,14 +6,15 @@
    </head>
    <body>
    <!-- Update A Friend -->
-   <form action='/friends/{{ friend['id'] }}/edit' method='post'>
-      <p>ID: {{ friend['id'] }}</p>
+   <form action='/friends/{{ friend['id'] }}' method='post'>
+
       <label for='first_name'>First Name</label>
       <input type='text' id='first_name' placeholder='{{ friend['first_name'] }}'>
       <label for='last_name'>Last Name</label>
       <input type='text' id='last_name' placeholder='{{ friend['last_name'] }}'>
       <label for='occupation'>Occupation</label>
       <input type='text' id='occupation' placeholder='{{ friend['occupation'] }}'>
+      <p> {{ friend['id'] }}</p>
       <input type='hidden' name='id' value='{{ friend['id']}}' readonly>
       <button type="submit" value="Edit">Submit Change</button>
       <hr>
