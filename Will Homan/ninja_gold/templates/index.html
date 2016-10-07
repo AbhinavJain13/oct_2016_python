@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja Gold</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+      .red{
+        color: red;
+      }
+      .green{
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+            <form>
+              Your Gold:
+              <input type="text" value="{{session["gold"]}}">
+            </form>
+            </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+            <h2>Farm</h2>
+            <h3>(Earns 10-20 golds)</h3>
+            <form action="/process_money" method="post">
+              <input type="hidden" name="building" value="farm" />
+              <input type="submit" value="Find Gold!"/>
+            </form>
+          </div>
+          <div class="col-md-3">
+              <h2>Cave</h2>
+              <h3>(Earns 5-10 golds)</h3>
+              <form action="/process_money" method="post">
+                <input type="hidden" name="building" value="cave" />
+                <input type="submit" value="Find Gold!"/>
+              </form>
+            </div>
+            <div class="col-md-3">
+                <h2>House</h2>
+                <h3>(Earns 2-5 golds)</h3>
+                <form action="/process_money" method="post">
+                  <input type="hidden" name="building" value="house" />
+                  <input type="submit" value="Find Gold!"/>
+                </form>
+              </div>
+              <div class="col-md-3">
+                  <h2>Casino</h2>
+                  <h3>(Earns/Takes 0-50 golds)</h3>
+                  <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="casino" />
+                    <input type="submit" value="Find Gold!"/>
+                  </form>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                    <h4>Activities</h4>
+                    {% for element in session['activities'] %}
+                      <p class="{{element[1]}}">{{element[0]}}</p>
+                    {% endfor %}
+                </div>
+              </div>
+    </div> <!-- end of container -->
+  </body>
+</html>
