@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" media="screen" title="no title">
+    <title></title>
+  </head>
+  <body>
+    <p>
+      Your Gold:<input type="text" name="gold" value={{session['gold']}}>
+    </p>
+    <div class="div1">
+      <p>
+        Farm
+      </p>
+      <p>
+        earns 10-20 gold
+      </p>
+    <form class="form1" action="/process_money" method="post">
+      <input type="hidden" name="building" value="farm" />
+      <input type="submit" value="Find Gold!"/>
+    </form>
+  </div>
+  <div class="div1">
+    <p>
+      Cave
+    </p>
+    <p>
+      earns 5-10 gold
+    </p>
+    <form  class="form1" action="/process_money" method="post">
+      <input type="hidden" name="building" value="cave" />
+      <input type="submit" value="Find Gold!"/>
+    </form>
+  </div>
+  <div class="div1">
+    <p>
+      House
+    </p>
+    <p>
+      earns 2-5 gold
+    </p>
+    <form  class="form1" action="/process_money" method="post">
+      <input type="hidden" name="building" value="House" />
+      <input type="submit" value="Find Gold!"/>
+    </form>
+  </div>
+  <div class="div1">
+    <p>
+      Casino
+    </p>
+    <p>
+      earns/takes 0-20 gold
+    </p>
+    <form  class="form1" action="/process_money" method="post">
+      <input type="hidden" name="building" value="Casino" />
+      <input type="submit" value="Find Gold!"/>
+    </form>
+  </div>
+  <div class="act">
+    <p>
+      Activities:
+    </p>
+    <p>
+
+    </p>
+
+    <textarea name="activity" rows="10" cols="100">
+    {%for i in session['activities']%}
+        {{i}}
+    {% endfor %}
+    </textarea>
+  </div>
+  <form class="" action="/restart" method="post">
+    <input type="submit"  value="restart">
+  </form>
+  </body>
+</html>
