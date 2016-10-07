@@ -26,9 +26,7 @@ def create():
     data = {
         "first_name":    request.form['first_name'],
         "last_name":     request.form['last_name'],
-        "occupation":    request.form['occupation'],
-        "created_at":    request.form['created_at'],
-        "updated_at":    request.form['updated_at']
+        "occupation":    request.form['occupation']
         }
     mysql.query_db(query,data)
     return redirect('/')
