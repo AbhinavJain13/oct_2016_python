@@ -14,7 +14,7 @@ mysql = MySQLConnector(app,'friendsdb')
 @app.route('/')
 def index():
     friends = mysql.query_db("SELECT * FROM friends")
-    print "many friends ",friends
+    # print "many friends ",friends
     # print friends
     return render_template('index.html',friends=friends)
 
@@ -31,7 +31,7 @@ def create():
     mysql.query_db(query,data)
     return redirect('/')
 
-# /friends/<friend_id>
+# /friends/<id>
 # Show a single friend by id
 @app.route('/friends/<id>',methods=['POST','GET'])
 def show(id):
@@ -49,45 +49,33 @@ def show(id):
 
     # GET it is a show a single friend
     else:
-        # to insert param variable :variable_name
         query = "SELECT * FROM friends WHERE id = :id"
-        # Then define a dictionary with key that matches :variable_name in query.
-        print "friend data: ", id
         data = {'id': id}
-        print "query data:",data
-        # Execute query, passing in a parameter obj
         friends = mysql.query_db(query, data)
-        # pass expected parameter(s) to the page to be rendered
         return render_template('index.html', friends=friends)
-
 
 # Update a friend by id
 # /friends/<id>/edit
 @app.route('/friends/<id>/edit', methods=['POST','GET'])
 def update(id):
-
     # POST it is an update
     if request.method == "POST":
-        # grab the post info and display it on the page
         friend={
             'first_name':  request.form['first_name'],
             'last_name':   request.form['last_name'],
             'occupation':  request.form['occupation'],
             'id':          request.form['id']
         }
+        print 'posted friend: ',friend
         return render_template('edit.html', friend=friend)
     # GET the information and ready the page for editing
     else:
-        # Get the info, render the edit page
         query = "SELECT * FROM friends WHERE id = :id"
-        # Then define a dictionary with key that matches :variable_name in query.
-        print "friend data: ", id
         data = {'id': id}
         print "query data:",data
-        # Execute query, passing in a parameter obj
-        friends = mysql.query_db(query, data)
-        # pass expected parameter(s) to the page to be rendered
-        return render_template('edit.html', friend=friend)
+        friend = mysql.query_db(query, data)
+        print 'returned friend: ',friend
+        return render_template('edit.html', friend=friend[0])
 
 # /friends/<id>/delete
 # Delete a friend by id

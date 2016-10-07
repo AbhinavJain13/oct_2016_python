@@ -14,6 +14,9 @@
          <p>Last Name: {{ friend['last_name'] }}</p>
          <p>Occupation: {{ friend['occupation'] }}</p>
          <input type='hidden' name='id' value='{{ friend['id']}}' readonly>
+         <input type='hidden' name='first_name' value='{{ friend['first_name']}}' readonly>
+         <input type='hidden' name='last_name' value='{{ friend['last_name']}}' readonly>
+         <input type='hidden' name="occupation" value='{{ friend['occupation']}}' readonly>
          <button type="submit" value="Edit">Edit Friend</button>
       </form>
       <form action='/friends/{{ friend['id'] }}/delete' method='post'>
