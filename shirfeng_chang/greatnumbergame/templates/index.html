@@ -1,0 +1,31 @@
+<html>
+    <head>
+       <title>Great Number Game</title>
+    </head>
+    <body>
+      <h1>Welcome to the Great Number Game</h1>
+      <p>I am thinking of a number between 1 and 100</p>
+      {%if "guess" not in session%}
+          <p>Take a guess!</p>
+          <form action='/try' method='post'>
+              <input type="text" name="guess">
+              <input type="submit" value="Submit">
+          </form>
+      {%elif session["guess"] == session["secret"]%}
+          <form action='/correct' method='post'>
+              <p>{{session["secret"]}} was the number!</p>
+              <input type="submit" name="submit" value="Play again!">
+          </form>
+      {%else%}
+        {%if session["guess"] < session["secret"]%}
+        <p>Too low!</p>
+        {%elif session["guess"] > session["secret"]%}
+        <p>Too high!</p>
+        {%endif%}
+        <form action='/try' method='post'>
+            <input type="text" name="guess">
+            <input type="submit" value="Submit">
+        </form>
+      {%endif%}
+    </body>
+</html>
