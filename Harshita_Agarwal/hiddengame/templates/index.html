@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+    <h2>Welcome to the great number game</h2>
+    <h3>I am thinking a number between 0 and 100</h3>
+    <h4>Take a guess</h4>
+    <form  class="form1"action="/users" method="post">
+      <input type="text" name="number" >
+
+      <!-- <input type="hidden" name="again" value="playagain"> -->
+      <input type="submit"  value="check">
+    </form>
+    <!-- <p>this is user number
+      {{session['numbers']}}
+
+    </p>
+    <p>this is hidden number
+      {{session['number1']}}
+    </p> -->
+    {% if session['numbers'] %}
+      {% if session['numbers']< session['number1'] %}
+           <p class="red">Too Low</p>
+      {% elif session['numbers'] >session['number1'] %}
+           <p class="red">Too high</p>
+      {% elif session['numbers'] == session['number1'] %}
+           <p class"green">
+            this was  a number{{number}}
+           </p>
+           <form class="form2" action="/restart" method="post">
+              <input type="submit" value="Play_again">
+           </form>
+      {% endif %}
+    {% endif %}
+
+    </div>
+  </body>
+</html>
