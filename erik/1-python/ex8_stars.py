@@ -14,8 +14,8 @@ def fullOfStars2(ary):
             print value[0]*len(value)
 fullOfStars2(data)
 
-# - - - - - - - - - - - - - - - - - - -
-
+# dEV - - - - - - - - - - - - - - - - - - -
+'''
 one = '6'
 vals = dict(one=1, two=2)
 print vals
@@ -39,3 +39,4 @@ print capitals
 print str(capitals)
 print capitals.items()
 # [('dkd', ['here', 'there', 'nowhere']), ('svk', 'Bratislava')]
+'''

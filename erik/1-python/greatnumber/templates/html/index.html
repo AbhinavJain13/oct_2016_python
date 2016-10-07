@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}">
+
+      <title></title>
+   </head>
+   <body>
+   {% if session['showform'] == True %}
+   <h3>Guess the number that I'm thinking of....</h3>
+   <form action='/proc_guess' method='post'>
+      <label for="guess">Your Guess:</label>
+      <input type="text" id="guess" name="guess">
+      <input type='submit' value='submit'>
+   </form>
+   {% else %}
+   <h1>You guessed {{ session['result'] }}</h1>
+
+   {% endif %}
+
+   </body>
+</html>
