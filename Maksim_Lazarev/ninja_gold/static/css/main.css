@@ -1,0 +1,43 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+.wrapper{
+  width: 1000px;
+  margin: 0 auto;
+  display: block;
+  padding: 50px;
+}
+label, input{
+  font-size: 1.2em;
+}
+#balance{
+  width: 250px;
+  height: 30px;
+}
+.building{
+  width: 200px;
+  height: 120px;
+  border: 1px solid black;
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+}
+button{
+  width: 100px;
+  height: 30px;
+}
+#activities{
+  width: 970px;
+  height: 100px;
+  border: 1px solid black;
+  padding: 5px;
+  overflow-y: scroll;
+}
+.green{
+  color: green;
+}
+.red {
+  color: red;
+}
