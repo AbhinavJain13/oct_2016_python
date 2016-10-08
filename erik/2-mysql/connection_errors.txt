@@ -1,0 +1,359 @@
+I had a ton of errors getting the connection to work. It was key that the connection file had the same name that is referenced in line 3 of the server.py, the import, since it imports from the other file. Doh!!
+
+I also had issues getting MySQL-python to install. The info that Joshua posted in Slack was very helpful.
+
+Collecting MySQL-python
+  Downloading MySQL-python-1.2.5.zip (108kB)
+    100% |████████████████████████████████| 112kB 2.4MB/s
+    Complete output from command python setup.py egg_info:
+    sh: mysql_config: command not found
+    Traceback (most recent call last):
+      File "<string>", line 1, in <module>
+      File "/private/var/folders/l2/l3gwlg996mb6lbnztbhcjy6c0000gn/T/pip-build-ENq3yi/MySQL-python/setup.py", line 17, in <module>
+        metadata, options = get_config()
+      File "setup_posix.py", line 43, in get_config
+        libs = mysql_config("libs_r")
+      File "setup_posix.py", line 25, in mysql_config
+        raise EnvironmentError("%s not found" % (mysql_config.path,))
+    EnvironmentError: mysql_config not found
+
+    ----------------------------------------
+Command "python setup.py egg_info" failed with error code 1 in /private/var/folders/l2/l3gwlg996mb6lbnztbhcjy6c0000gn/T/pip-build-ENq3yi/MySQL-python/
+(py2FlaskEnv) Eriks-MacBook-Pro:ninjia_gold erikclineschmidt$ pip install MySQL-python==1.2.5
+Collecting MySQL-python==1.2.5
+  Using cached MySQL-python-1.2.5.zip
+    Complete output from command python setup.py egg_info:
+    sh: mysql_config: command not found
+    Traceback (most recent call last):
+      File "<string>", line 1, in <module>
+      File "/private/var/folders/l2/l3gwlg996mb6lbnztbhcjy6c0000gn/T/pip-build-qOs5u5/MySQL-python/setup.py", line 17, in <module>
+        metadata, options = get_config()
+      File "setup_posix.py", line 43, in get_config
+        libs = mysql_config("libs_r")
+      File "setup_posix.py", line 25, in mysql_config
+        raise EnvironmentError("%s not found" % (mysql_config.path,))
+    EnvironmentError: mysql_config not found
+
+    ----------------------------------------
+Command "python setup.py egg_info" failed with error code 1 in /private/var/folders/l2/l3gwlg996mb6lbnztbhcjy6c0000gn/T/pip-build-qOs5u5/MySQL-python/
+(py2FlaskEnv) Eriks-MacBook-Pro:ninjia_gold erikclineschmidt$ export PATH="/Applications/MAMP/Library/bin:$PATH"
+(py2FlaskEnv) Eriks-MacBook-Pro:ninjia_gold erikclineschmidt$ pip install MySQL-python==1.2.5
+Collecting MySQL-python==1.2.5
+  Using cached MySQL-python-1.2.5.zip
+Building wheels for collected packages: MySQL-python
+  Running setup.py bdist_wheel for MySQL-python ... done
+  Stored in directory: /Users/erikclineschmidt/Library/Caches/pip/wheels/38/a3/89/ec87e092cfb38450fc91a62562055231deb0049a029054dc62
+Successfully built MySQL-python
+Installing collected packages: MySQL-python
+Successfully installed MySQL-python-1.2.5
+(py2FlaskEnv) Eriks-MacBook-Pro:ninjia_gold erikclineschmidt$ pip install Flask-SQLAlchemy==2.1
+Collecting Flask-SQLAlchemy==2.1
+  Downloading Flask-SQLAlchemy-2.1.tar.gz (95kB)
+    100% |████████████████████████████████| 102kB 984kB/s
+Requirement already satisfied (use --upgrade to upgrade): Flask>=0.10 in /Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages (from Flask-SQLAlchemy==2.1)
+Collecting SQLAlchemy>=0.7 (from Flask-SQLAlchemy==2.1)
+  Downloading SQLAlchemy-1.1.0.tar.gz (5.1MB)
+    100% |████████████████████████████████| 5.1MB 237kB/s
+Requirement already satisfied (use --upgrade to upgrade): click>=2.0 in /Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages (from Flask>=0.10->Flask-SQLAlchemy==2.1)
+Requirement already satisfied (use --upgrade to upgrade): Werkzeug>=0.7 in /Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages (from Flask>=0.10->Flask-SQLAlchemy==2.1)
+Requirement already satisfied (use --upgrade to upgrade): Jinja2>=2.4 in /Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages (from Flask>=0.10->Flask-SQLAlchemy==2.1)
+Requirement already satisfied (use --upgrade to upgrade): itsdangerous>=0.21 in /Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages (from Flask>=0.10->Flask-SQLAlchemy==2.1)
+Requirement already satisfied (use --upgrade to upgrade): MarkupSafe in /Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages (from Jinja2>=2.4->Flask>=0.10->Flask-SQLAlchemy==2.1)
+Building wheels for collected packages: Flask-SQLAlchemy, SQLAlchemy
+  Running setup.py bdist_wheel for Flask-SQLAlchemy ... done
+  Stored in directory: /Users/erikclineschmidt/Library/Caches/pip/wheels/cf/9f/1b/390c152e645c6e300fda9ed9c678c6e22717a3020fd02acb4d
+  Running setup.py bdist_wheel for SQLAlchemy ... done
+  Stored in directory: /Users/erikclineschmidt/Library/Caches/pip/wheels/0f/ce/bb/f5e422936359f531b4bb0cb1d1cb8bd62b3522f07ec7933503
+Successfully built Flask-SQLAlchemy SQLAlchemy
+Installing collected packages: SQLAlchemy, Flask-SQLAlchemy
+Successfully installed Flask-SQLAlchemy-2.1 SQLAlchemy-1.1.0
+(py2FlaskEnv) Eriks-MacBook-Pro:ninjia_gold erikclineschmidt$ cd ..
+(py2FlaskEnv) Eriks-MacBook-Pro:1-python erikclineschmidt$ ls
+bigass.py		ex4_oddeven.py		firstflaskserver
+ex1.py			ex5_mult.py		greatnumber
+ex10_regx.py		ex6_scores.py		hello.py
+ex11_bubblesort.py	ex7_cointoss.py		ninjia_gold
+ex2.py			ex8_stars.py
+ex3.py			ex9_names.py
+(py2FlaskEnv) Eriks-MacBook-Pro:1-python erikclineschmidt$ cd ..
+(py2FlaskEnv) Eriks-MacBook-Pro:erik erikclineschmidt$ ls
+1-python	README.md	algs
+(py2FlaskEnv) Eriks-MacBook-Pro:erik erikclineschmidt$ mkdir 2-mysql
+(py2FlaskEnv) Eriks-MacBook-Pro:erik erikclineschmidt$ cd 2-mysql/
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ ls
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ touch server.py
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ touch sqlconnection.py
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ atom .
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ pwd
+/Users/erikclineschmidt/Documents/oct_2016_python/erik/2-mysql
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ ls
+server.py		sqlconnection.py
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ python server.py
+Traceback (most recent call last):
+  File "server.py", line 1, in <module>
+    from flask import Flask
+ImportError: No module named flask
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ pip list
+click (6.6)
+Flask (0.11.1)
+Flask-SQLAlchemy (2.1)
+itsdangerous (0.24)
+Jinja2 (2.8)
+MarkupSafe (0.23)
+MySQL-python (1.2.5)
+pip (8.1.2)
+setuptools (28.2.0)
+SQLAlchemy (1.1.0)
+Werkzeug (0.11.11)
+wheel (0.30.0a0)
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ deactivate
+Eriks-MacBook-Pro:2-mysql erikclineschmidt$ ls
+server.py		sqlconnection.py
+Eriks-MacBook-Pro:2-mysql erikclineschmidt$ pwd
+/Users/erikclineschmidt/Documents/oct_2016_python/erik/2-mysql
+Eriks-MacBook-Pro:2-mysql erikclineschmidt$ cd ..
+Eriks-MacBook-Pro:erik erikclineschmidt$ cd ..
+Eriks-MacBook-Pro:oct_2016_python erikclineschmidt$ ls
+Alex Villacres		Justin_Yi		Thomas Geelens
+Andrew_Choe		Karishma_Tiwari		Yubao_Zhao
+Carissa			Kele_Powell		anthony_cho
+Christopher_Nguyen	Kenny_Nguyen		erik
+EvanChen		Michael Rohn		python_syllabus.md
+Harshita_Agarwal	Nathaniel Bethel	shirfeng_chang
+JoshuaAhn		README.md		stevengum97
+Eriks-MacBook-Pro:oct_2016_python erikclineschmidt$ cd erik
+Eriks-MacBook-Pro:erik erikclineschmidt$ ls
+1-python	2-mysql		README.md	algs
+Eriks-MacBook-Pro:erik erikclineschmidt$ cd 1-python/
+Eriks-MacBook-Pro:1-python erikclineschmidt$ ls
+bigass.py		ex4_oddeven.py		firstflaskserver
+ex1.py			ex5_mult.py		greatnumber
+ex10_regx.py		ex6_scores.py		hello.py
+ex11_bubblesort.py	ex7_cointoss.py		ninjia_gold
+ex2.py			ex8_stars.py
+ex3.py			ex9_names.py
+Eriks-MacBook-Pro:1-python erikclineschmidt$ cd ..
+Eriks-MacBook-Pro:erik erikclineschmidt$ cd ..
+Eriks-MacBook-Pro:oct_2016_python erikclineschmidt$ ls
+Alex Villacres		Justin_Yi		Thomas Geelens
+Andrew_Choe		Karishma_Tiwari		Yubao_Zhao
+Carissa			Kele_Powell		anthony_cho
+Christopher_Nguyen	Kenny_Nguyen		erik
+EvanChen		Michael Rohn		python_syllabus.md
+Harshita_Agarwal	Nathaniel Bethel	shirfeng_chang
+JoshuaAhn		README.md		stevengum97
+Eriks-MacBook-Pro:oct_2016_python erikclineschmidt$ cd ..
+Eriks-MacBook-Pro:Documents erikclineschmidt$ ls
+FonePaw			examTime.tiff		oct_2016_python
+README.md		greatnumber		pass.txt
+dojo-work		linktowork.txt		path.txt
+dojo_python		node-install-paths.tiff	repository.txt
+Eriks-MacBook-Pro:Documents erikclineschmidt$ cd dojo_python/
+Eriks-MacBook-Pro:dojo_python erikclineschmidt$ cd environments
+Eriks-MacBook-Pro:environments erikclineschmidt$ ls
+py2FlaskEnv
+Eriks-MacBook-Pro:environments erikclineschmidt$ source py2FlaskEnv/bin/activate
+(py2FlaskEnv) Eriks-MacBook-Pro:environments erikclineschmidt$ ls
+py2FlaskEnv
+(py2FlaskEnv) Eriks-MacBook-Pro:environments erikclineschmidt$ cd ..
+(py2FlaskEnv) Eriks-MacBook-Pro:dojo_python erikclineschmidt$ cd ..
+(py2FlaskEnv) Eriks-MacBook-Pro:Documents erikclineschmidt$ ls
+FonePaw			examTime.tiff		oct_2016_python
+README.md		greatnumber		pass.txt
+dojo-work		linktowork.txt		path.txt
+dojo_python		node-install-paths.tiff	repository.txt
+(py2FlaskEnv) Eriks-MacBook-Pro:Documents erikclineschmidt$ cd oct_2016_python/
+(py2FlaskEnv) Eriks-MacBook-Pro:oct_2016_python erikclineschmidt$ ls
+Alex Villacres		Justin_Yi		Thomas Geelens
+Andrew_Choe		Karishma_Tiwari		Yubao_Zhao
+Carissa			Kele_Powell		anthony_cho
+Christopher_Nguyen	Kenny_Nguyen		erik
+EvanChen		Michael Rohn		python_syllabus.md
+Harshita_Agarwal	Nathaniel Bethel	shirfeng_chang
+JoshuaAhn		README.md		stevengum97
+(py2FlaskEnv) Eriks-MacBook-Pro:oct_2016_python erikclineschmidt$ cd erik
+(py2FlaskEnv) Eriks-MacBook-Pro:erik erikclineschmidt$ ls
+1-python	2-mysql		README.md	algs
+(py2FlaskEnv) Eriks-MacBook-Pro:erik erikclineschmidt$ cd 2-mysql/
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ ls
+server.py		sqlconnection.py
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ python server.py
+Traceback (most recent call last):
+  File "server.py", line 3, in <module>
+    from mysqlconnection import MySQLConnector
+ImportError: No module named mysqlconnection
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ pip list
+click (6.6)
+Flask (0.11.1)
+Flask-SQLAlchemy (2.1)
+itsdangerous (0.24)
+Jinja2 (2.8)
+MarkupSafe (0.23)
+MySQL-python (1.2.5)
+pip (8.1.2)
+setuptools (28.2.0)
+SQLAlchemy (1.1.0)
+Werkzeug (0.11.11)
+wheel (0.30.0a0)
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ pwd
+/Users/erikclineschmidt/Documents/oct_2016_python/erik/2-mysql
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ python server.py
+Traceback (most recent call last):
+  File "server.py", line 6, in <module>
+    mysql = MySQLConnector(app, 'basictest')
+NameError: name 'MySQLConnector' is not defined
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ python server.py
+Traceback (most recent call last):
+  File "server.py", line 3, in <module>
+    from mysqlconnection import MySQLConnector
+ImportError: No module named mysqlconnection
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ brew install mysql-connector-c
+==> Auto-updated Homebrew!
+Updated 1 tap (homebrew/core).
+==> New Formulae
+amqp-cpp            git-series          nmh                 sqldiff
+borg                modd                sonar-scanner       termbox
+==> Updated Formulae
+ace                        gucharmap                  oniguruma
+armor                      hub                        openconnect
+autojump                   imagemagick                openhmd
+aws-sdk-cpp                irrlicht                   osm2pgsql
+awscli                     jack                       osquery
+bind                       jansson                    pdal
+caddy                      jboss-forge                peco
+caf                        jenkins                    picocom
+carthage                   jfrog-cli-go               pngcrush
+castxml                    jsdoc3                     postgis
+cayley                     jsoncpp                    proj
+certbot                    kobalt                     purescript
+clutter-gtk                kube-aws                   re2
+conan                      libass                     riemann-client
+deheader                   libgaiagraphics            rocksdb
+dvm                        libgeotiff                 rolldice
+elasticsearch              libgit2                    ruby
+evince                     libjson-rpc-cpp            rush
+fdupes                     liblwgeom                  shared-mime-info
+ffmpeg                     libmongoclient             spatialite-gui
+fontforge                  librasterlite              spatialite-tools
+fonttools                  libspatialite              sqlmap
+freetds                    llnode                     sslyze
+fzf                        luaradio                   syncthing
+gdal                       mapnik                     sysdig
+gdk-pixbuf                 mapserver                  terminal-notifier
+gedit                      media-info                 tile38
+git                        mediaconch                 unbound
+git-archive-all            mercurial                  uwsgi
+gitbucket                  meson                      vault
+glide                      midnight-commander         wimlib
+gnome-builder              mlogger                    winetricks
+gnome-icon-theme           mogenerator                xonsh
+gnome-themes-standard      mongodb                    yaz
+gobject-introspection      neofetch                   youtube-dl
+googler                    nexus                      zplug
+gsettings-desktop-schemas  nmap                       zstd
+gtk+3                      noti
+gtkmm3                     notmuch
+
+==> Downloading https://homebrew.bintray.com/bottles/mysql-connector-c-6.1.6.el_
+######################################################################## 100.0%
+==> Pouring mysql-connector-c-6.1.6.el_capitan.bottle.tar.gz
+🍺  /usr/local/Cellar/mysql-connector-c/6.1.6: 73 files, 16.4M
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ python server.py
+Traceback (most recent call last):
+  File "server.py", line 3, in <module>
+    from mysqlconnection import MySQLConnector
+ImportError: No module named mysqlconnection
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ pip list
+click (6.6)
+Flask (0.11.1)
+Flask-SQLAlchemy (2.1)
+itsdangerous (0.24)
+Jinja2 (2.8)
+MarkupSafe (0.23)
+MySQL-python (1.2.5)
+pip (8.1.2)
+setuptools (28.2.0)
+SQLAlchemy (1.1.0)
+Werkzeug (0.11.11)
+wheel (0.30.0a0)
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ pip --updateFlask-SQLAlchemy
+
+Usage:
+  pip <command> [options]
+
+no such option: --updateFlask-SQLAlchemy
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ pip --update MySQL-python
+
+Usage:
+  pip <command> [options]
+
+no such option: --update
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ pip --update MySQL-python
+
+Usage:
+  pip <command> [options]
+
+no such option: --update
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ pwd
+/Users/erikclineschmidt/Documents/oct_2016_python/erik/2-mysql
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ python server.py
+Traceback (most recent call last):
+  File "server.py", line 8, in <module>
+    print mysql.query_db("SELECT * FROM users")
+  File "/Users/erikclineschmidt/Documents/oct_2016_python/erik/2-mysql/mysqlconnection.py", line 22, in query_db
+    result = self.db.session.execute(text(query), data)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/orm/scoping.py", line 157, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/orm/session.py", line 1107, in execute
+    bind, close_with_result=True).execute(clause, params or {})
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/orm/session.py", line 971, in _connection_for_bind
+    engine, execution_options)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/orm/session.py", line 403, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 2106, in contextual_connect
+    self._wrap_pool_connect(self.pool.connect, None),
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 2145, in _wrap_pool_connect
+    e, dialect, self)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1456, in _handle_dbapi_exception_noconnection
+    exc_info
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 202, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 2141, in _wrap_pool_connect
+    return fn()
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/pool.py", line 387, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/pool.py", line 766, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/pool.py", line 516, in checkout
+    rec = pool._do_get()
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/pool.py", line 1138, in _do_get
+    self._dec_overflow()
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/pool.py", line 1135, in _do_get
+    return self._create_connection()
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/pool.py", line 333, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/pool.py", line 461, in __init__
+    self.__connect(first_connect_check=True)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/pool.py", line 651, in __connect
+    connection = pool._invoke_creator(self)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 105, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 385, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/MySQLdb/__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "/Users/erikclineschmidt/Documents/dojo_python/environments/py2FlaskEnv/lib/python2.7/site-packages/MySQLdb/connections.py", line 193, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2003, "Can't connect to MySQL server on '127.0.0.1' (61)")
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ python server.py
+[]
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+[]
+ * Debugger is active!
+ * Debugger pin code: 149-914-198
+^C(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ clear
+
+(py2FlaskEnv) Eriks-MacBook-Pro:2-mysql erikclineschmidt$ clear

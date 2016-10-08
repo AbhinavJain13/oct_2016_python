@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang='en'>
+   <head>
+      <meta charset="utf-8">
+      <title>Edit</title>
+   </head>
+   <body>
+      <h1>Edit Your Friend's Information</h1>
+   <!-- Update A Friend -->
+   <form action='/friends/{{ friend['id'] }}' method='post'>
+      <label for='first_name'>First Name</label>
+      <input type='text' id='first_name' name='first_name' value='{{ friend['first_name'] }}' placeholder='{{ friend['first_name'] }}'>
+      <label for='last_name'>Last Name</label>
+      <input type='text' id='last_name' name='last_name' value='{{ friend['last_name'] }}' placeholder='{{ friend['last_name'] }}'>
+      <label for='occupation'>Occupation</label>
+      <input type='text' id='occupation' name='occupation' value='{{ friend['occupation'] }}' placeholder='{{ friend['occupation'] }}'>
+      <p> {{ friend['id'] }}</p>
+      <input type='hidden' name='id' value='{{ friend['id']}}' readonly>
+      <button type="submit">Submit Change</button>
+      <hr>
+   </form>
+   </body>
+</html>
