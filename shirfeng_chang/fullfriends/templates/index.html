@@ -1,0 +1,29 @@
+<html>
+    <head>
+       <title>title</title>
+    </head>
+    <body>
+      <form action='/friends' method='post'>
+        First name:
+        <input type="text" name="first">
+        Last name:
+        <input type="text" name="last">
+        E-mail:
+        <input type="text" name="email">
+        <input type="submit" value="Submit">
+      </form>
+      <ul>
+      {% for friend in friends%}
+        <li>
+          <p>{{friend["first"]}} {{friend["last"]}} {{friend["email"]}}</p>
+          <form action='/friends/{{friend["id"]}}/edit' method='get'>
+            <input type ="submit" value="Edit">
+          </form>
+          <form action='/friends/{{friend["id"]}}/delete' method='post'>
+            <input type ="submit" value="Delete">
+          </form>
+        </li>
+      {% endfor %}
+      </ul>
+    </body>
+</html>
