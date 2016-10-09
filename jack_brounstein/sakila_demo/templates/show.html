@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Movie!</title>
+	</head>
+	<body>
+		<h1>{{film.title}}</h1>
+		<p>{{film.description}}</p>
+		<p>Rated {{film.rating}}</p>
+		<h3>Actors</h3>
+		<ul>
+		{% for actor in actors %}
+			<li>{{actor.first_name}} {{actor.last_name}}</li>
+		{% endfor %}
+		</ul>
+	</body>
+</html>

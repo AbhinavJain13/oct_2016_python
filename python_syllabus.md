@@ -109,14 +109,12 @@ Assignments|
 Bike|
 Car **GitHub**|
 Chaining Methods **GitHub**|
-MathDojo **GitHub**|
 
 Optional|
 ---|
 Singly-Linked Lists|
 Doubly-Linked Lists|
-
-: Through MathDojo (we'll do Underscore together in class)
+MathDojo|
 
 ### Wednesday, October 12
 

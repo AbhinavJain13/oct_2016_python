@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='number_game.css') }}">
+    <title>Number Game</title>
+</head>
+<body>
+    <div id="container">
+        <h2>Welcome to the Great Number Game!</h2>
+        <p>I am thinking of a number between 1 and 100</p>
+        <p>Take a guess!</p>
+        {% if session['number'] %}
+        {% if session['number'] < session['secret_number'] %}
+            <div class='red'>
+                <p class='message'>SORRY BUDDY<br>Too low.</p>
+            </div>
+        {% elif session['number'] > session['secret_number'] %}
+            <div class='red'>
+                <p class='message'>SORRY PAL<br>Too high there.</p>
+            </div>
+        {% elif session['number'] == session['secret_number'] %}
+            <div class='green'>
+                <p class='message'>The number was {{number}}!</p>
+                <form class="newround" action="/restart" method="post">
+                    <input type="submit" name="name" value="Play again?">
+                </form>
+            </div>
+        {% endif %}
+        {% endif %}
+        <form action="/guess" method="post">
+            <input type="text" name="number">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
