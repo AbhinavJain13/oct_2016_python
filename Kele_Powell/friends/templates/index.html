@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    <title>Friends home</title>
+  </head>
+  <body>
+  <H1>Hello, wanna be friends?</H1>
+
+  <form action="/data" method="post">
+  <label>Firsst Name: <input type="text" name="first" value=""></label>
+  <label>Last Name: <input type="text" name="last" value=""></label>
+  <label>Email Address: <input type="text" name="email" value=""></label>
+<input type="submit" name="name" value="Submit">
+  </form>
+ {%for friend in friends%}
+   <li>{{friend.first_name}} {{friend.last_name}} {{friend.email}} {{friend.created_at.strftime('%m/%d/%y %I:%M %p')}}<a href="/friend/{{friend['id']}}/delete"><button type="button" name="delete">Delete</button></a><a href="/friend/{{friend['id']}}/edit"><button type="button" name="edit">Edit</button></a></li>
+ {%endfor%}
+  </body>
+</html>

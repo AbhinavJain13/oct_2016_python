@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    <title>Main</title>
+<style>
+.success{
+  list-style-type: none;
+  color:green;
+
+}
+</style>
+  </head>
+  <body>
+    <p>Email: {{session['email']}}</p>
+    <p>First Name: {{session['first']}}</p>
+    <p>Last Name: {{session['last']}}</p>
+    {{session['pass']}}
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+    <ul class=flashes>
+      {%for category, message in messages %}
+      <li class="{{category}}">{{message}}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  {% endwith %}
+  <a href="/logout"><button type="button" name="button">Logout</button></a>
+
+
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    <title>dissapearing ninjas</title>
+
+  </head>
+  <body>
+
+{%if name%}
+  {%if name=="purple"%}
+    <img src="{{url_for('static',filename='Ninjas/donatello.jpg')}}"  />
+    {%elif name=="blue"%}
+      <img src="{{url_for('static',filename='Ninjas/leonardo.jpg')}}"  />
+    {%elif name=="red"%}
+      <img src="{{url_for('static',filename='Ninjas/raphael.jpg')}}"  />
+    {%elif name=="orange"%}
+      <img src="{{url_for('static',filename='Ninjas/michelangelo.jpg')}}"  />
+    {%else%}
+      <img src="{{url_for('static',filename='Ninjas/notapril.jpg')}}"  />
+    {%endif%}
+  {%else%}
+  <img src="{{url_for('static',filename='Ninjas/tmnt.png')}}"  />
+  {%endif%}
+  </body>
+</html>

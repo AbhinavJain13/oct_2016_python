@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    <title>Friends home</title>
+  </head>
+  <body>
+  <H1>Don't like your information? change it here</H1>
+
+  <form action="/friend/{{id}}" method="post">
+  <label>First Name: <input type="text" name="first" value={{friends[0].first_name}}></label>
+  <label>Last Name: <input type="text" name="last" value={{friends[0].last_name}}></label>
+  <label>Email Address: <input type="text" name="email" value={{friends[0].email}}></label>
+<input type="submit"  value="Change my stuff!">
+  </form>
+  </body>
+</html>
+<!-- <a href="/friends/{{friends.id}}"><button type="button" name="delete">Delete</button></a> -->
