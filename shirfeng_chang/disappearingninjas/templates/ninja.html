@@ -1,0 +1,22 @@
+<html>
+    <head>
+       <title>Disappearing Ninjas</title>
+    </head>
+    <body>
+      {% if blue == 1%}
+        <img width="200px" height="200px" src="{{ url_for('static', filename="leonardo.jpg") }}">
+      {% endif%}
+      {% if orange == 1%}
+        <img width="200px" height="200px" src="{{ url_for('static', filename="michelangelo.jpg") }}">
+      {% endif %}
+      {% if red == 1%}
+        <img width="200px" height="200px" src="{{ url_for('static', filename="raphael.jpg") }}">
+      {% endif %}
+      {% if purple == 1%}
+        <img width="200px" height="200px" src="{{ url_for('static', filename="donatello.jpg") }}">
+      {% endif %}
+      {% if other == 1%}
+        <img width="200px" height="200px" src="{{ url_for('static', filename="notapril.jpg") }}">
+      {% endif %}
+    </body>
+</html>

@@ -1,0 +1,16 @@
+.green {
+    color: green;
+}
+.red {
+    color: red;
+}
+.options {
+    border: 1px solid black;
+    display: inline-block;
+}
+#activities {
+    overflow: auto;
+    width: 1000px;
+    height:500px;
+    border: 1px solid black;
+}

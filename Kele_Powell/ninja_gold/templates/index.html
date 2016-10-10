@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja Gold!</title>
+  </head>
+  <body>
+    <style media="screen">
+    *{
+      font-family: arial;
+    }
+      .work{
+        border: 1px solid black;
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        padding: 10px;
+        line-height: 2;
+      }
+      .work h3{
+        font-size: 1em
+      }
+      .work form{
+      position: relative;
+      top: 40px;
+      }
+      .work input[type="submit"]{
+        background-color: gold;
+
+      }
+      li{
+        list-style: none;
+      }
+      .green{
+        color:green;
+      }
+      .red{
+        color:red;
+      }
+
+
+
+      #active{
+        height:200px;
+        width: 1000px;
+        overflow: auto;
+        border: 1px solid black;
+      }
+    </style>
+  <div id="gold"><p>Your Gold: {{session['gold']}}</p></div>
+    <div class="work">
+      <h2>Farm</h2>
+      <h3>(earns 10-20 gold)</h3>
+      <form action="/process_money" method="post">
+        <input type="hidden" name="building" value="farm" />
+        <input type="submit" value="Find Gold!"/>
+      </form>
+    </div>
+    <div class="work">
+      <h2>Cave</h2>
+      <h3>(earns 5-10 gold)</h3>
+        <form action="/process_money" method="post">
+        <input type="hidden" name="building" value="cave" />
+        <input type="submit" value="Find Gold!"/>
+      </form>
+    </div>
+    <div class="work">
+      <h2>House</h2>
+      <h3>(earns 2-5 gold)</h3>
+        <form action="/process_money" method="post">
+        <input type="hidden" name="building" value="house" />
+        <input type="submit" value="Find Gold!"/>
+      </form>
+    </div>
+    <div class="work">
+      <h2>Casino</h2>
+      <h3>(earns/takes 0-50 gold)</h3>
+        <form action="/process_money" method="post">
+        <input type="hidden" name="building" value="casino" />
+        <input type="submit" value="Find Gold!"/>
+      </form>
+    </div>
+    <form action="/process_money" method="post">
+    <input type="hidden" name="building" value="reset" />
+    <input type="submit" value="Start Over!"/>
+
+      <h2>Activities</h2>
+
+      <div id="active">
+        {%for new_entry in session['activities']%}
+        <li class='{{new_entry['class']}}'>{{new_entry['message']}}
+          </li>
+          {%endfor%}
+
+    </div>
+
+  </body>
+</html>

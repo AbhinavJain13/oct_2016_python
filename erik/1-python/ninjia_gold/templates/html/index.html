@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}">
+
+      <title></title>
+   </head>
+   <body>
+
+   <h2>Total Gold: {{ session['total'] }}</h2>
+
+   <form action='/proc_gold' method='post'>
+      <input type='submit' name="farm" value='Find Gold!'>
+      <input type='submit' name="cave" value='Find Gold!'>
+      <input type='submit' name="house" value='Find Gold!'>
+      <input type='submit' name="casino" value='Find Gold!'>
+   </form>
+
+   <div style="width:500px;height:300px;overflow-y:auto;border:1px solid black;">
+      <div style="">
+         {% for val in session['log']: %}
+            <p class="{{ "green" if val['amount'] > 0 else "red" }}">
+               {% if val['amount'] > 0 %}
+               Earned {{ val['amount'] }} from {{ val['source'] }} {{ val['when']}}!!
+               {% else: %}
+               Entered a {{ val['source'] }} after drinking and lost {{ val['amount'] }} {{ val['when']}}!!
+               {% endif %}
+            </p>
+         {% endfor %}
+      </div>
+   </div>
+
+   </body>
+</html>

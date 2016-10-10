@@ -1,0 +1,19 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+.wrapper{
+  margin: 0 auto;
+  display: block;
+  padding: 50px;
+}
+h1{
+  color: red;
+}
+form{
+border: 1px solid black;
+}
+form input{
+  display: block;
+  padding-bottom: 10px;
+}

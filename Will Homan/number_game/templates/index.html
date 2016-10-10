@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Great Number Game</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Welcome to the Great Number Game!</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>I am thinking of a number between 1 and 100</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Take a guess</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          {% if 'guess' in session: %}
+            {% if session['guess'] > session['secretnum']: %}
+              <h1 class="red">Too High!</h1>
+            {% endif %}
+            {% if session['guess'] < session['secretnum']: %}
+              <h1 class="red">Too Low!</h1>
+            {% endif %}
+            {% if session['guess'] == session['secretnum']: %}
+              <h1 class="green">{{session['guess']}} was the number!</h1><br><br>
+            <form action='/reset' method='post'>
+              <input type='submit' value='Play Again!'>
+              </form>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form action='/numguess' method='post'>
+            <input type='text' name='guess'><br><br>
+            <input type='submit' value='Submit'>
+          </form>
+        </div>
+      </div>
+    </div> <!-- end of container -->
+  </body>
+</html>

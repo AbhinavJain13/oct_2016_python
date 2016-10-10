@@ -12,7 +12,6 @@ def makeRandom():
 random_list = makeRandom()
 
 def stars(random_list):
-    tup = ()
     for i in random_list:
         if isinstance(i, int):
             print i*'@'

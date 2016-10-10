@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja Gold</title>
+    <style>
+
+      .green {
+          color: green;
+      }
+      .red {
+          color: red;
+      }
+      .activity {
+          overflow: auto;
+          width: 600px;
+          height:300px;
+          border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h1>Ninja Gold!</h1>
+      <h3>Gold: </h3><input type="text" name="gold" value="{{session['gold']}}">
+      <div class="box">
+        <h3>Farm</h3>
+        <p>
+          earns 10-20 gold!
+        </p>
+        <form action="/process_money" method="POST">
+          <input type="hidden" name="building" value="farm">
+          <input type="submit" value="Find Gold!">
+        </form>
+      </div>
+      <div class="box">
+        <h3>Cave</h3>
+        <p>
+          earns 5-10 gold!
+        </p>
+        <form action="/process_money" method="POST">
+          <input type="hidden" name="building" value="cave">
+          <input type="submit" value="Find Gold!">
+        </form>
+      </div>
+      <div class="box">
+        <h3>House</h3>
+        <p>
+          earns 2-5 gold!
+        </p>
+        <form class="" action="/process_money" method="POST">
+          <input type="hidden" name="building" value="house">
+          <input type="submit" value="Find Gold!">
+        </form>
+      </div>
+      <div class="box">
+        <h3>Casino</h3>
+        <p>
+          earns/takes 0-50 gold!
+        </p>
+        <form action="/process_money" method="POST">
+          <input type="hidden" name="building" value="casino">
+          <input type="submit" value="Find Gold!">
+        </form>
+        <h3>Activities</h3>
+        <div class="activity">
+            {% for dict in session['activity'] %}
+              <p>
+                {{dict['activity']}} {{dict['date']}}
+              </p>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

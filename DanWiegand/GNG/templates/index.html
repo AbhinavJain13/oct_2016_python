@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    *{
+      font-family: cursive;
+    }
+    .red{
+      background-color: red;
+      color: white;
+      height: 200px;
+      width: 200px;
+      border: 3px solid black;
+    }
+    .green{
+      background-color: green;
+      color: white;
+      height: 200px;
+      width: 200px;
+      border: 3px solid black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to the Great Number Game!</h1><br>
+  <p>I am thinking of a number between 1 and 100</p> <br>
+  <p>Take a guess!</p> <br> <br> <br>
+
+  <form name ='guess' class="" action="/guess" method="post">
+    <input type="text" name="guess" value="">
+    <input type="submit" name="submit" value="Submit">
+  </form>
+  {% if session['guess'] %}
+  {% endif %}
+  {% if session['guess'] < session['secret'] %}
+  <div class='red'>
+    <h1>TOO LOW!!</h1>
+  </div>
+{% elif session['secret'] < session['guess'] %}
+  <div class='red'>
+    <h1>TOO HIGH!!</h1>
+  </div>
+{% elif session['guess'] == session['secret']%}
+  <div class="green">
+    <h1>{{session['guess']}} was the number!</h1>
+    <form name="clear" action="/clear" method="post">
+      <input type="submit" name="name" value="Play again!">
+    </form>
+  </div>
+  <!-- {% endif %} -->
+  {% endif %}
+</body>
+</html>
