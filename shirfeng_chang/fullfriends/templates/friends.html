@@ -1,0 +1,16 @@
+<html>
+    <head>
+       <title>title</title>
+    </head>
+    <body>
+          {% for val in friend%}
+          <h1>Edit {{val["first"]}} {{val["last"]}}</h1>
+          <form action='/friends/{{val["id"]}}' method='post'>
+            <input type ="text" name="first" value={{val["first"]}}>
+            <input type ="text" name="last" value={{val["last"]}}>
+            <input type ="text" name="email" value={{val["email"]}}>
+            <input type="submit" value="Submit">
+          </form>
+          {% endfor %}
+    </body>
+</html>
