@@ -6,24 +6,15 @@
 </head>
 <body>
 
-<!-- {% with messages = get_flashed_messages() %}
-   {% if messages %}
-      {% for message in messages %}
-        <p>{{message}}</p>
-      {% endfor %}
-   {% endif %}
-{% endwith %} -->
+<form action='/login' method='post'>
+   <label for="email">Email Address</label>
+   <input type="text" name='email' id='email'>
 
+   <label for="password">Password</label>
+   <input type="password" name='password' id='password'>
 
-   <form action='/login' method='post'>
-      <label for="email">Email Address</label>
-      <input type="text" name='email' id='email'>
-
-      <label for="password">Password</label>
-      <input type="password" name='password' id='password'>
-
-      <button type='submit' value='login'>Login</button>
-   </form>
+   <button type='submit' value='login'>Login</button>
+</form>
 
 
 </body>

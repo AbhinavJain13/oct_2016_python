@@ -108,7 +108,6 @@ def register():
 
         # Encrypt password
         pw_hash = bcrypt.generate_password_hash(password)
-        print 'PASSWORD hash: ',pw_hash
 
         data = {
             "first_name":   first_name,
@@ -128,7 +127,7 @@ def register():
         query_full = '''SELECT * FROM users WHERE id = :id'''
         data_full = {
             "id":   new_user_id
-            }
+        }
         current_user = mysql.query_db(query_full,data_full)
         # session['current_user'] = current_user
         # print 'And, the current user: ',current_user[0]
