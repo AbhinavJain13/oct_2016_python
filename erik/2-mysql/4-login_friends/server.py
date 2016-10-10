@@ -28,6 +28,14 @@ def validate_chars_8(string):
 def passwords_match(pw1,pw2):
     return pw1==pw2
 
+def check_logged_in():
+    if session.has_key('current_user'):
+        print "YES!!"
+        return True
+    else:
+        return False
+
+
 
 # Routes --------------------------------------------
 
@@ -54,6 +62,8 @@ def index():
 
 @app.route('/login',methods=['POST','GET'])
 def login():
+    if check_logged_in():
+        return redirect('/')
     try:
         # validation
         email = request.form['email']
@@ -81,11 +91,13 @@ def logout():
     return redirect('/login')
 
 # REGISTRATION ________________________________________
+
 @app.route('/registration',methods=['POST','GET'])
 def register():
+    if check_logged_in():
+         return redirect('/')
 
-    try: #to validate and register
-        # print 'REGISTRATION POST: ',request.form
+    try:
         first_name =        request.form['first_name']
         last_name =         request.form['last_name']
         email =             request.form['email']
