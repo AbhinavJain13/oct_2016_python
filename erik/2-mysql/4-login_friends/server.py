@@ -12,6 +12,7 @@ bcrypt = Bcrypt(app)
 # specify the db
 mysql = MySQLConnector(app,'friendsdb')
 
+app.secret_key = 'someKey'
 
 # Functions -----------------------------------------
 
@@ -31,14 +32,19 @@ def validate_chars_8(string):
 @app.route('/',methods=['GET'])
 def index():
     try:
-        logged_in_id = SESSION['current_user']['id']
-        # For a logged in user, we're going to look up ad display their friends
-        data={
-            "logged": logged_in_id
-            }
-        friends = mysql.query_db("SELECT * FROM friends WHERE id= :logged_in_id",data)
-        # print "many friends ",friends
-        return render_template('index.html',friends=friends)
+        "InDEX!! ",session['current_user']
+
+        return render_template('index.html')
+
+        #
+        # logged_in_id = SESSION['current_user']
+        # # For a logged in user, we're going to look up ad display their friends
+        # data={
+        #     "logged": logged_in_id
+        #     }
+        # friends = mysql.query_db("SELECT * FROM friends WHERE id= :logged_in_id",data)
+        # # print "many friends ",friends
+        # return render_template('index.html',friends=friends)
 
     except:
         print "not logged in"
@@ -115,15 +121,22 @@ def register():
         # the new user's id is returned by the INSERT
         new_user_id = mysql.query_db(query,data)
 
+        print 'NEW USER ID: ',new_user_id
+
         # GRAB THE COMPLETE USER now....
-        query_full = '''SELECT * from users WHERE id = :id'''
+        query_full = '''SELECT * FROM users WHERE id = :id'''
         data_full = {
-            "id":   session['current_user_id']
-        }
-        session['current_user'] = mysql.query_db(query_full,data_full)
+            "id":   new_user_id
+            }
+        current_user = mysql.query_db(query_full,data_full)
+        # session['current_user'] = current_user
+        # print 'And, the current user: ',current_user[0]
+        session['current_user'] = current_user[0]
+        print 'Made it!! ',session['current_user']
         return redirect('/')
 
     except:
+        #raise
         return render_template('registration.html')
 
 
