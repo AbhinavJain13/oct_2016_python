@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Ninja</title>
+    <meta charset="utf-8">
+</head>
+<body>
+  {% if blue %}
+    <img src="{{ url_for('static', filename="leonardo.jpg") }}">
+  {% endif%}
+  {% if orange %}
+    <img src="{{ url_for('static', filename="michelangelo.jpg") }}">
+  {% endif %}
+  {% if red %}
+    <img src="{{ url_for('static', filename="raphael.jpg") }}">
+  {% endif %}
+  {% if purple %}
+    <img src="{{ url_for('static', filename="donatello.jpg") }}">
+  {% endif %}
+  {% if not %}
+    <img src="{{ url_for('static', filename="notapril.jpg") }}">
+  {% endif %}

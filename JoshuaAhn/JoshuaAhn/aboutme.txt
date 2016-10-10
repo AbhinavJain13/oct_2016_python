@@ -1,0 +1,11 @@
+function AboutMe(person) {
+  if(person == "Josh")  {
+    console.log(["Fact 1 - I worked numerous Jobs"])
+    ["Fact 2 - I love to skateboard!"],
+    ["Fact 3 - Im 20 years old, young as I can be and as Old as I can be, working hard to become one day a Developer"]);
+  }
+  else {
+    console.log("Greetings Earthling!, Your in the wrong Directory hehe");
+  }
+}
+AboutMe("Josh")

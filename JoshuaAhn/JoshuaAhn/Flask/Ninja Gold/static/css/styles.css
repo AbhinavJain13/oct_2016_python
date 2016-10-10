@@ -1,0 +1,139 @@
+* {
+    margin: auto;
+    padding: auto;
+    color: black;
+    background-color: black;
+    font-family: fantasy;
+}
+div#wrapper {
+    width: 1200px;
+    margin: 50px auto;
+}
+    p#gold {
+        padding: 10px 0;
+    }
+        span {
+            width: 60px;
+            border: 2px solid;
+            padding: 4px 10px;
+            margin-left: 20px;
+            display: inline-block;
+        }
+    div.farm {
+        width: 250px;
+        height: 200px;
+        border: 2px solid ;
+        border-radius: 5px;
+        box-shadow: 1px 1px 2px gray;
+        margin: 15px 25px 25px 0;
+        display: inline-block;
+        background-color: green;
+    }
+        h1 {
+            text-align:center;
+            margin-top: 30px;
+        }
+        .casino p {
+            text-align:center;
+            margin-top: 20px;
+        }
+        .house p {
+            text-align:center;
+            margin-top: 20px;
+        }
+        .farm p {
+            text-align:center;
+            margin-top: 20px;
+        }
+        .cave p {
+            text-align:center;
+            margin-top: 20px;
+        }
+        form {
+            text-align:center;
+            margin-top: 40px;
+        }
+            input {
+                font-size: 1em;
+                font-weight: bold;
+                color: #3e4e5a;
+                background-color: red;
+                border: 2px solid #3e4e5a;
+                border-radius: 5px;
+                outline: none;
+                cursor: pointer;
+                box-shadow: 2px 2px 4px;
+                padding: 5px 15px;
+            }
+            input:hover {
+                color:
+                background-color: ;
+                box-shadow: 1px 1px 2px gray;
+            }
+            div.cave {
+                width: 250px;
+                height: 200px;
+                border: 2px solid ;
+                border-radius: 5px;
+                box-shadow: 1px 1px 2px gray;
+                margin: 15px 25px 25px 0;
+                display: inline-block;
+                background-color: grey;
+              }
+              div.house {
+                  width: 250px;
+                  height: 200px;
+                  border: 2px solid ;
+                  border-radius: 5px;
+                  box-shadow: 1px 1px 2px gray;
+                  margin: 15px 25px 25px 0;
+                  display: inline-block;
+                  background-color: blue;
+                }
+                div.casino {
+                    width: 250px;
+                    height: 200px;
+                    border: 2px solid ;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 2px gray;
+                    margin: 15px 25px 25px 0;
+                    display: inline-block;
+                    background-color: green;
+                  }
+    div#activity {
+        width:1070px;
+        height: 180px;
+        border: 2px solid red;
+        border-radius: 5px;
+        box-shadow: 1px 1px 2px gray;
+        overflow: auto;
+        margin-top: 10px;
+        padding: 10px 15px;
+    }
+        #activity p{
+            margin-bottom: 6px;
+        }
+        p#earn {
+            color: green;
+        }
+        p#lost {
+            color: red;
+        }
+    a {
+        font-weight: bold;
+        color: white;
+        background-color: black;
+        border: 2px solid;
+        border-radius: 5px;
+        outline: none;
+        text-decoration: none;
+        box-shadow: 2px 2px 4px red;
+        margin-top: 30px;
+        padding: 4px 20px;
+        display: inline-block;;
+    }
+    a:hover {
+        color: blue;
+        background-color: black;
+        box-shadow: 1px 1px 2px gray;
+    }

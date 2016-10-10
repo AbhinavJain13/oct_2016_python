@@ -1,0 +1,26 @@
+h1 {
+  color: blue;
+
+}
+
+p{
+  color:black;
+}
+
+}
+
+#correct  {
+  height: 200px;
+  width: 200px;
+  background-color: green;
+  color:white;
+
+}
+
+#wrong  {
+  height: 200px;
+  width: 200px;
+  background-color: red;
+  color:white;
+
+}
