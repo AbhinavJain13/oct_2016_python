@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Friend</title>
+  </head>
+  <body>
+    <div class="edit_friend">
+      <h2>Edit a Friend</h2>
+      <form action='/friends/{{id}}' method='POST'>
+        <label for="first_name">First Name:<input type="text" name="first_name" value={{friend[0].first_name}}></label>
+        <label for="last_name">Last Name:<input type="text" name="last_name" value={{friend[0].last_name}}></label>
+        <label for="occupation">Email:<input type="text" name="email" value={{friend[0].email}}></label>
+        <input type="submit" value="Edit Friend">
+      </form>
+    </div>
+  </body>
+</html>
