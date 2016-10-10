@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Full Friends</title>
+   <!-- linking a css style sheet -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+ </head>
+ <body>
+   <div class="wrapper">
+     <h1>Edit Friend</h1>
+     <br><form class="friend" action="/friends/{{friend[0].id}}" method="post">
+       <div class="block">
+         <label for="first_name">First Name:</label>
+         <input type="text" name="first_name" value="{{friend[0].first_name}}">
+       </div>
+       <div class="block">
+         <label for="last_name">Last Name:</label>
+         <input type="text" name="last_name" value="{{friend[0].last_name}}">
+       </div>
+       <div class="block">
+         <label for="email">Email:</label>
+         <input type="email" name="email" value="{{friend[0].email}}">
+       </div>
+     <button id="btnUpdate" type="submit" name="btnUpdate">Update</button>
+     </form>
+   </div>
+
+
+<!-- linking a javascript file -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!-- linking an image -->
+<!-- <img src="{{ url_for('static', filename='img/img.png') }}"> -->
+ </body>
+</html>

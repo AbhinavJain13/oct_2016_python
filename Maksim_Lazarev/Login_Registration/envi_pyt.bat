@@ -1,0 +1,1 @@
+cmd /k "cd C:\Users\Max\OneDrive\Documents\Coding_Dojo\Python\myEnvironments&& call py2FlaskEnv/Scripts/activate&& echo ON && cd C:\Users\Max\OneDrive\Documents\Coding_Dojo\Python\Flask+MySQL\Assignments\Login_Registration && python server.py"

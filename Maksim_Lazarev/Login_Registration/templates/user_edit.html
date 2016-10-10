@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Login and Registration</title>
+   <!-- linking a css style sheet -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+ </head>
+ <body>
+   <div class="wrapper">
+     <h1>Edit user information</h1>
+     {% with messages = get_flashed_messages(with_categories=true) %}
+       {% if messages %}
+         <ul class=flashes>
+           {% for category, message in messages %}
+             <li class="{{ category }}">{{ message }}</li>
+           {% endfor %}
+         </ul>
+       {% endif %}
+     {% endwith %}
+     <br><form class="friend" action="/user/update" method="post">
+       <div class="block">
+         <label for="first_name">First Name:</label>
+         <input type="text" name="first_name" value="{{user[0].first_name}}">
+       </div>
+       <div class="block">
+         <label for="last_name">Last Name:</label>
+         <input type="text" name="last_name" value="{{user[0].last_name}}">
+       </div>
+       <div class="block">
+         <label for="email">Email:</label>
+         <input type="email" name="email" value="{{user[0].email}}">
+       </div>
+       <div class="block">
+         <label for="password">Password</label>
+         <input type="password" name="password" value="">
+       </div>
+       <div class="block">
+         <label for="confirm_password">Confirm Password</label>
+         <input type="password" name="confirm_password" value="">
+       </div>
+     <button id="btnUpdate" type="submit" name="btnUpdate">Update</button>
+     </form>
+   </div>
+
+
+<!-- linking a javascript file -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!-- linking an image -->
+<!-- <img src="{{ url_for('static', filename='img/img.png') }}"> -->
+ </body>
+</html>
