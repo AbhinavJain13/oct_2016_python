@@ -11,24 +11,20 @@ bcrypt = Bcrypt(app)
 # specify the db
 mysql = MySQLConnector(app,'friendsdb')
 
-# md5 - can be removed if not needed
-# password = 'password'
-# encPw = md5.new(password).hexdigest()
-# print 'encoded: ',encPw
-
 # Routes --------------------------------------------
 
 # /
 # Root (default)
 @app.route('/',methods=['GET'])
 def index():
-    # check for logged in user
     try:
-        logged_in_id = SESSION['logged_in_id']
-
-        friends = mysql.query_db("SELECT * FROM friends WHERE id = SESSION['logged_in_id']")
+        logged_in_id = SESSION['current_user']['id']
+        # For a logged in user, we're going to look up ad display their friends
+        data={
+            "logged": logged_in_id
+            }
+        friends = mysql.query_db("SELECT * FROM friends WHERE id= :logged_in_id",data)
         # print "many friends ",friends
-        # print friends
         return render_template('index.html',friends=friends)
 
     except:
@@ -37,11 +33,44 @@ def index():
 
 # LOGIN -----------------------------------------------
 
+@app.route('/login',methods=['POST'])
+def login():
+    try:
+        # validation
+        # if len(request.form['email']) < 1:
+        #     flash("Email cannot be empty!") # just pass a string to the flash function
+        # else:
+        #     flash("Success! Your email is {}".format(request.form['email']))
+
+
+        email: request.form['email']
+        errors = []
+        query =  '''SELECT * FROM users WHERE email= :email LIMIT 1'''
+        data = {
+            email: email
+            }
+        attempt_user = mysql.query_db(query,data)
+        if bcrypt.check_password_hash(attempt_user[0]['pw_hash'], password):
+            SESSION['current_user'] = attempt_user[0]
+            return redirect('/')
+        else:
+            return redirect('/login')
+    except:
+
+        # Redirect or stay on this page.
+        return render_template('/login',errors=errors)
 
 
 
 # REGISTRATION ________________________________________
+@app.rounte('/registration')
+def register():
+    # VALIDATE FORM data
 
+    errors = []
+    # IF VALID...
+
+    # ELSE
 
 
 
