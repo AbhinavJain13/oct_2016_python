@@ -7,12 +7,12 @@ from flask_bcrypt import Bcrypt
 from mysqlconnection import MySQLConnector
 # app it up
 app = Flask(__name__)
+app.secret_key = 'OnlyInAJeep'
 # encryption
 bcrypt = Bcrypt(app)
 # specify the db
 mysql = MySQLConnector(app,'friendsdb')
 
-app.secret_key = 'someKey'
 
 # Functions -----------------------------------------
 
@@ -20,10 +20,10 @@ def validate_email(email):
     return re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', email)
 
 def validate_letters_2(string):
-    return re.match('[a-zA-Z]{2}',string)
+    return re.match('[a-zA-Z]{2,}',string)
 
 def validate_chars_8(string):
-    return re.match('/w{8}',string)
+    return re.match('\w{8,}',string)
 
 def passwords_match(pw1,pw2):
     return pw1==pw2
@@ -93,20 +93,26 @@ def register():
         password_confirm =  request.form['password_confirm']
 
         # VALIDATE FORM data
+        errors_flag = 0
         if(not validate_letters_2(first_name)):
             flash('First Name invalid!',category='first')
+            errors_flag = 1
         if(not validate_letters_2(last_name)):
             flash('First Name invalid!',category='last')
+            errors_flag = 1
         if(not validate_email(email)):
             flash('Invalid email address!',category='email')
+            errors_flag = 1
         if(not validate_chars_8(password) or not validate_chars_8(password_confirm)):
             flash('Password not long enough!',category='password')
+            errors_flag = 1
         if(not passwords_match(password,password_confirm)):
             flash('Passswords do not match!',category='password')
-        if(flash_messages):
-            redirect ('/registration')
+            errors_flag = 1
 
-        # Encrypt password
+        if(errors_flag == 1):
+            return redirect ('/registration')
+
         pw_hash = bcrypt.generate_password_hash(password)
 
         data = {
@@ -121,25 +127,19 @@ def register():
         # the new user's id is returned by the INSERT
         new_user_id = mysql.query_db(query,data)
 
-        print 'NEW USER ID: ',new_user_id
-
         # GRAB THE COMPLETE USER now....
         query_full = '''SELECT * FROM users WHERE id = :id'''
         data_full = {
             "id":   new_user_id
         }
         current_user = mysql.query_db(query_full,data_full)
-        # session['current_user'] = current_user
-        # print 'And, the current user: ',current_user[0]
+
         session['current_user'] = current_user[0]
-        print 'Made it!! ',session['current_user']
         return redirect('/')
 
     except:
         #raise
         return render_template('registration.html')
-
-
 
 
 # FRIENDS ROUTES --------------------------------------
