@@ -25,6 +25,10 @@ def validate_letters_2(string):
 def validate_chars_8(string):
     return re.match('/w{8}',string)
 
+def passwords_match(pw1,pw2):
+    return pw1==pw2
+
+
 # Routes --------------------------------------------
 
 # /
@@ -32,44 +36,31 @@ def validate_chars_8(string):
 @app.route('/',methods=['GET'])
 def index():
     try:
-        "InDEX!! ",session['current_user']
+        current_user_id = session['current_user']['id']
+        # with their id, we can retrieve their friends, their posts, etc....
+        query =  '''SELECT * FROM friends WHERE id = :id'''
+        data = {
+            "id" : current_user_id
+        }
+        friends = mysql.query_db(query,data)
 
-        return render_template('index.html')
-
-        #
-        # logged_in_id = SESSION['current_user']
-        # # For a logged in user, we're going to look up ad display their friends
-        # data={
-        #     "logged": logged_in_id
-        #     }
-        # friends = mysql.query_db("SELECT * FROM friends WHERE id= :logged_in_id",data)
-        # # print "many friends ",friends
-        # return render_template('index.html',friends=friends)
+        return render_template('index.html',friends=friends)
 
     except:
-        print "not logged in"
+        print "Not logged in"
         return redirect('/login')
 
-# LOGIN -----------------------------------------------
+# LOGIN / LOGOUT -----------------------------------------------
 
 @app.route('/login',methods=['POST','GET'])
 def login():
     try:
         # validation
+        email = request.form['email']
+        if(not validate_email(email)):
+            flash("Email is not valid!",category='email')
+            return redirect('/login')
 
-# First Name - letters only, at least 2 characters and that it was submitted
-# Last Name - letters only, at least 2 characters and that it was submitted
-# Email - Valid Email format, and that it was submitted
-# Password - at least 8 characters, and that it was submitted
-# Password Confirmation - matches password
-
-        # if len(request.form['email']) < 1:
-        #     flash("Email cannot be empty!") # just pass a string to the flash function
-        # else:
-        #     flash("Success! Your email is {}".format(request.form['email']))
-
-
-        email= request.form['email']
         query =  '''SELECT * FROM users WHERE email= :email LIMIT 1'''
         data = {
             email: email
@@ -79,13 +70,15 @@ def login():
             session['current_user'] = attempt_user[0]
             return redirect('/')
         else:
+            flash("Password is not valid!",category='password')
             return redirect('/login')
     except:
-
-
         return render_template('login.html')
 
-
+@app.route('/logout',methods=['GET'])
+def logout():
+    session.clear()
+    return redirect('/login')
 
 # REGISTRATION ________________________________________
 @app.route('/registration',methods=['POST','GET'])
@@ -100,9 +93,18 @@ def register():
         password_confirm =  request.form['password_confirm']
 
         # VALIDATE FORM data
-
-
-        # IF VALID...
+        if(not validate_letters_2(first_name)):
+            flash('First Name invalid!',category='first')
+        if(not validate_letters_2(last_name)):
+            flash('First Name invalid!',category='last')
+        if(not validate_email(email)):
+            flash('Invalid email address!',category='email')
+        if(not validate_chars_8(password) or not validate_chars_8(password_confirm)):
+            flash('Password not long enough!',category='password')
+        if(not passwords_match(password,password_confirm)):
+            flash('Passswords do not match!',category='password')
+        if(flash_messages):
+            redirect ('/registration')
 
         # Encrypt password
         pw_hash = bcrypt.generate_password_hash(password)
@@ -113,7 +115,6 @@ def register():
             "last_name" :   last_name,
             "email":        email,
             "password":     pw_hash
-
         }
 
         query = '''INSERT INTO users(first_name,last_name,email,password,created_at,updated_at)
