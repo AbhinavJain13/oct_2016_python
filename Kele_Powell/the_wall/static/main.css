@@ -1,0 +1,82 @@
+*{
+  padding: 0;
+  margin: 0;
+  font-family: comic, sans-serif;
+}
+#container{
+  width:100%;
+  height: 1000px;
+
+}
+  #banner{
+    height: 60px;
+    width: 100%;
+    padding: 10px 0px 0px 20px;
+    border-bottom: 1px solid black
+  }
+    #banner p{
+      float:right;
+      position: relative;
+      bottom:20px;
+      margin-right: 30px;
+    }
+    #banner button{
+      margin-left: 20px;
+      padding: 3px 10px;
+      background-color: whitesmoke;
+    }
+    #content{
+      margin: 0px 10%;
+    }
+      #message_box{
+        margin-top: 30px;
+        }
+        #message_box form {
+          margin-top:10px;
+        }
+        #message_box input[name='submit']{
+        display:block;
+        margin-left:910px;
+        background-color: blue;
+        color: white;
+      padding: 3px 10px;
+      border-radius: 4px;
+        }
+      .messages{
+        margin-top: 20px;
+      }
+      .messages h2{
+        margin-left: -20px;
+      }
+      .messages p{
+        margin-top:20px;
+        line-height: 1.3;
+      }
+        .comment{
+          margin-top: 20px;
+          margin-left: 10px;
+        }
+        .comment h2{
+          margin-left: -5px;
+        }
+        .comment p{
+          margin-top:10px;
+          line-height: 1.3;
+        }
+        .comment_box{
+          margin-top: 30px;
+          }
+          .comment_box h2{
+            margin: 0px;
+          }
+          .comment_box form {
+            margin-top:5px;
+          }
+          .comment_box input[name='submit']{
+          display:block;
+          margin-left:910px;
+          background-color: green;
+          color: white;
+        padding: 3px 10px;
+        border-radius: 4px;
+          }

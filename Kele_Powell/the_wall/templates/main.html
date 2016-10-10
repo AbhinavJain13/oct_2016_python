@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>the wall</title>
+      <link rel="stylesheet" type="text/css" href="{{url_for('static',filename="main.css")}}">
+  </head>
+  <body>
+    <div id="container">
+
+    <div id="banner">
+
+      <h1>Coding Dojo Wall</h1>
+      {%if users%}
+      {%for user in users%}
+      <p>Welcome:{{user.first_name}} {{user.last_name}}<a href="/logout"><button type="button" name="Logout">Logout</button></a></p>
+      {%endfor%}
+      {%endif%}
+      {%if not users%}
+      <p>Not Logged in<a href="/"><button type="button" name="register">Login / Register</button></a></p>
+      {%endif%}
+
+    </div>
+
+      <div id="content">
+        <div id="message_box">
+          <h2>Post a message</h2>
+          <form  action="/message" id="message" method="post">
+          <textarea form="message" name="name" rows="5" cols="165"></textarea>
+          <input type="submit" name="submit" value="Post Message">
+          </form>
+        </div>
+
+        {%for message in messages%}
+
+        <div class="messages">
+          <h2>{{message['name']}} {{message.updated_at.strftime('%B %e %Y')}}</h2>
+          <p>{{message['message']}}</p>
+          {%for user in users%}
+          {%if user.id==message.user_id%}
+            <a href="/edit_message/{{message.id}}"><button type="button" name="edit">Edit</button></a>
+            <a href="/delete/message/{{message.id}}"><button type="button" name="delete">Delete</button></a>
+            {%endif%}
+            {%endfor%}
+            {%for comment in comments%}
+            {%if comment.message_id==message.id%}
+            <div class="comment"><h3>{{comment.name}} {{comment.updated_at.strftime('%B %e %Y')}}</h3><p>{{comment.comment}}</p>
+          </div>
+        {%endif%}
+        {%for user in users%}
+        {%if comment.user_id==user.id and comment.message_id==message.id%}
+        <a href="/edit_comment/{{comment.id}}"><button type="button" name="edit">Edit</button></a>
+        <a href="/delete/comment/{{comment.id}}"><button type="button" name="delete">Delete</button></a>
+        {%endif%}
+        {%endfor%}
+        {%endfor%}
+
+        <div class="comment_box">
+          <h2>Post a comment</h2>
+          <form  action="main/comment/{{message['id']}}" id='comment_{{message['id']}}' method="post">
+          <textarea form="comment_{{message['id']}}" name="comm" rows="5" cols="165"></textarea>
+          <input type="submit" name="submit" value="Post Comment">
+          <a href="/comment/message/{{message['id']}}"></a>
+
+          </form>
+            {%endfor%}
+
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
