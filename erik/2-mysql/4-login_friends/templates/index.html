@@ -91,7 +91,13 @@
 
 <h1>Messages</h1>
 
-{{ messages }}
+{% for message in messages %}
+
+{{ message }}<br/>
+   <form action='/comment' method='post'>
+   </form>
+
+{% endfor %}
 
 <!-- {% for key,data in all_messages %}
 

@@ -46,15 +46,13 @@ def index():
         current_user_id = session['current_user']['id']
         session['show_login'] = 0
 
-        print 'back at INDEX',current_user_id
-
-        query =  '''SELECT * FROM messages WHERE user_id = :id'''
-        data = {
-            "id" : current_user_id
-        }
-        all_messages = mysql.query_db(query,data)
+        # GET MESSAGES
+        query =  '''SELECT m.id as msgid, m.body as mbody, m.updated_at as mdate, c.id as cmtid, c.body as cbody
+                    FROM messages m
+                    LEFT JOIN comments c ON m.id = c.message_id
+                    '''
+        all_messages = mysql.query_db(query)
         print 'got back this messages: ',all_messages
-        session['show_login'] = 0
         return render_template('index.html',messages=all_messages)
 
     except:
@@ -167,7 +165,7 @@ def register():
         # return render_template('index.html')
 
 
-# FRIENDS ROUTES --------------------------------------
+# MESSAGES ROUTES --------------------------------------
 
 # /messages
 # Create a new friend
