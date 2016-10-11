@@ -81,6 +81,7 @@ def login():
         print "ATTEMPTED USER PASS: ",attempt_user[0]['password']
         if bcrypt.check_password_hash(attempt_user[0]['password'], password):
             session['current_user'] = attempt_user[0]
+            session['show_login'] = 0
             return redirect('/')
         else:
             flash("Password is not valid!",category='password')
