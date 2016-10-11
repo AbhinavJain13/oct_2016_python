@@ -1,0 +1,108 @@
+<html>
+<head>
+  <title>Another Brick</title>
+</head>
+<body>
+<p>Just Another Brick In The Wall</p>
+{% if not session['show_login']: %}
+<p>Hello {{ session['current_user']['first_name'] }} | <a href='/logout'>Logout</a></p>
+{% endif %}
+
+<hr/>
+
+{% if session['show_login'] %}
+<!-- LOGIN FORM -->
+<h2>LOGIN</h2>
+<form action='/login' method='post'>
+   <label for="email">Email Address</label>
+   <input type="text" name='email' id='email'>
+   {% with email_error = get_flashed_messages(category_filter=['email']) %}
+   {% if email_error %}
+      {% for msg in email_error %}
+      <p style="color:red;">{{ msg }}</p>
+      {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <label for="password">Password</label>
+   <input type="password" name='password' id='password'>
+   {% with password_error = get_flashed_messages(category_filter=['password']) %}
+   {% if password_error %}
+      {% for msg in password_error %}
+      <p style="color:red;">{{ msg }}</p>
+      {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <button type='submit' value='login'>Login</button>
+</form>
+<hr/>
+<!-- REGISTRATION FORM -->
+<h2>REGISTRATION</h2>
+<form action='/registration' method='post'>
+   <label for='first_name'>First Name</label>
+   <input type='text' name='first_name' placeholder='First Name'>
+   {% with rfirst_error = get_flashed_messages(category_filter=['rfirst']) %}
+   {% if rfirst_error %}
+      {% for msg in rfirst_error %}
+      <p style="color:red;">{{ msg }}</p>
+      {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <label for='last_name'>Last Name</label>
+   <input type='text' name='last_name' placeholder='Last Name'>
+   {% with rlast_error = get_flashed_messages(category_filter=['rlast']) %}
+   {% if rlast_error %}
+      {% for msg in rlast_error %}
+      <p style="color:red;">{{ msg }}</p>
+      {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <label for='email'>Email</label>
+   <input type='text' name='email' placeholder='Email'>
+   {% with remail_error = get_flashed_messages(category_filter=['remail']) %}
+   {% if remail_error %}
+      {% for msg in remail_error %}
+      <p style="color:red;">{{ msg }}</p>
+      {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <label for='password'>Password</label>
+   <input type='password' name='password' >
+   <label for='password_confirm'>Confirm Password</label>
+   <input type='password' name='password_confirm' >
+   {% with rpassword_error = get_flashed_messages(category_filter=['rpassword']) %}
+   {% if rpassword_error %}
+      {% for msg in rpassword_error %}
+      <p style="color:red;">{{ msg }}</p>
+      {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <button type='submit' value='submit'>Register</button>
+</form>
+<hr/>
+
+{% else: %} <!-- SHOW THE WALL - - - - - - - - - - - - - - - - - - - - - - -->
+
+<form action='/messages' method='post'>
+ <label for="message">Post A Message:<input type="text" name="message" id="message"></label>
+ <input type="submit" value="Post A Message">
+</form>
+
+<h1>Messages</h1>
+
+{% for message in messages %}
+{{ message.mbody }}<br/>
+{% if message.cbody: %}{{ message.cbody }}{% endif %}
+   <form action='/comments' method='post'>
+      <input type="text" name="comment">
+      <input type="hidden" name="msgid" value="{{ message.msgid}}">
+      <input type="hidden" name="muserid" value="{{ message.muserid}}">
+      <input type="submit" value="Add Comment">
+   </form>
+{% endfor %}
+
+{% endif %} <!-- CLOSE IF WRAPPER -->
+
+
+
+</body>
+</html>
