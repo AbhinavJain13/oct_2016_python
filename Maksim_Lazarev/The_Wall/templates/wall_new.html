@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>The Wall</title>
+   <!-- linking a css style sheet -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+ </head>
+ <body>
+  <header>
+    <h1 class="inline">Coding Dojo Wall</h1>
+    <h3 class="inline">Welcome {{user[0].first_name}} !</h3>
+    <a class="inline" href="/user/profile">Profile</a>
+    <a class="inline" href="/">Log Off</a>
+  </header>
+  <div class="wrapper">
+   <form class="frmMsgPost" action="/user/message/post" method="post">
+      <h3>Post a message</h3>
+      <!-- <input id="txtMsg" type="text" name="txtMsg" value=""> -->
+      <textarea name="txtMsg" rows="8" cols="112"></textarea>
+      <button id="btnMsgSubmit" type="submit" name="btnMsgSubmit">Post a message</button>
+    </form>
+    {% for msg_comment in msg_comments %}
+      <ul class="txtMsg">
+        <li><b>{{msg_comment.name}} - {{(msg_comment.created_at).strftime("%B %d %Y")}}</b></li>
+        <li class="li_msg">{{msg_comment.message}}</li>
+        {% for comment in comments %}
+          <ul>
+            <li>{{comment.name}} - {{(comment.created_at).strftime("%B %d %Y")}}</li>
+            <li>{{comment.comment}}</li>
+          </ul>
+        {% endfor %}
+        <form class="frmCmtPost" action="/user/comment/post" method="post">
+           <h3>Post a comment</h3>
+           <!-- <input id="txtMsg" type="text" name="txtMsg" value=""> -->
+           <textarea name="txtMsg" rows="6" cols="104"></textarea>
+           <button id="btnCmtSubmit" type="submit" name="btnCmtSubmit">Post a comment</button>
+         </form>
+      </ul>
+    {% endfor %}
+
+
+  </div>
+
+<!-- linking a javascript file -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!-- linking an image -->
+<!-- <img src="{{ url_for('static', filename='img/img.png') }}"> -->
+ </body>
+</html>

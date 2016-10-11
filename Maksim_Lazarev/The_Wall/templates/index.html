@@ -1,0 +1,80 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <title>The Wall</title>
+    <!-- linking a css style sheet -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+    <div class="wrapper">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class=flashes>
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      <h1>Login</h1>
+      <br><form class="frmUser" action="/login" method="post">
+        <div class="block">
+          <label for="email">Email:</label>
+          <input class="input_right" type="email" name="email" value="">
+        </div>
+        <div class="block">
+          <label for="password">Password</label>
+          <input class="input_right" type="password" name="password" value="">
+        </div>
+        <button id="btnLogin" type="submit" name="btnLogin">Login</button>
+      </form>
+      <br><h1>Registration</h1>
+      <br><form class="frmUser" action="/register" method="post">
+        <div class="block">
+          <label for="first_name">First Name:</label>
+          <input class="input_right" type="text" name="first_name" value="">
+        </div>
+        <div class="block">
+          <label for="last_name">Last Name:</label>
+          <input class="input_right" type="text" name="last_name" value="">
+        </div>
+        <div class="block">
+          <label for="email">Email:</label>
+          <input class="input_right" type="email" name="email" value="">
+        </div>
+        <div class="block">
+          <label for="password">Password</label>
+          <input class="input_right" type="password" name="password" value="">
+        </div>
+        <div class="block">
+          <label for="confirm_password">Confirm Password</label>
+          <input class="input_right" type="password" name="confirm_password" value="">
+        </div>
+      <button id="btnRegister" type="submit" name="btnRegister">Register</button>
+      </form>
+      <!-- {% if (frmUsers) %}
+        <br><h3><u>List of frmUsers:</u></h3>
+        <br><ul>
+        {% for frmUser in frmUsers %}
+          <li>
+            <form class="frmdelete" action="/frmUsers/{{frmUser.id}}/delete" method="post">
+              <div class="inline">{{frmUser.first_name}}</div>
+              <div class="inline">{{frmUser.last_name}}</div>
+              <div class="inline">{{frmUser.email}}</div>
+              <div class="inline">{{(frmUser.created_at).strftime("%m/%d/%Y %H:%M%p")}}</div>
+              <a class="inline" href="/frmUsers/{{frmUser.id}}/edit"><button type="button" name="btnEdit">Edit</button></a>
+              <button class="inline" type="submit" name="btnDelete">Delete</button>
+            </form>
+          </li>
+        {% endfor %}
+        </ul>
+      {% endif %} -->
+    </div>
+
+
+<!-- linking a javascript file -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!-- linking an image -->
+<!-- <img src="{{ url_for('static', filename='img/img.png') }}"> -->
+  </body>
+</html>
