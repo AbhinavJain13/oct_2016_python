@@ -176,9 +176,10 @@ def register():
 # Create a new message
 @app.route('/messages', methods=['POST'])
 def create():
-    query = "INSERT INTO messages(user_id,body,created_at,updated_at) VALUES (:user_id,:body,NOW(),NOW())"
 
-     # run validations and if they are successful...
+    # run validations and if they are successful...
+
+    query = "INSERT INTO messages(user_id,body,created_at,updated_at) VALUES (:user_id,:body,NOW(),NOW())"
 
     data = {
         "user_id":       session['current_user']['id'],
