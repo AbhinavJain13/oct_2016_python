@@ -40,27 +40,27 @@
 <form action='/registration' method='post'>
    <label for='first_name'>First Name</label>
    <input type='text' name='first_name' placeholder='First Name'>
-   {% with first_error = get_flashed_messages(category_filter=['first']) %}
-   {% if first_error %}
-      {% for msg in first_error %}
+   {% with rfirst_error = get_flashed_messages(category_filter=['rfirst']) %}
+   {% if rfirst_error %}
+      {% for msg in rfirst_error %}
       <p style="color:red;">{{ msg }}</p>
       {% endfor %}
    {% endif %}
    {% endwith %}
    <label for='last_name'>Last Name</label>
    <input type='text' name='last_name' placeholder='Last Name'>
-   {% with last_error = get_flashed_messages(category_filter=['last']) %}
-   {% if last_error %}
-      {% for msg in last_error %}
+   {% with rlast_error = get_flashed_messages(category_filter=['rlast']) %}
+   {% if rlast_error %}
+      {% for msg in rlast_error %}
       <p style="color:red;">{{ msg }}</p>
       {% endfor %}
    {% endif %}
    {% endwith %}
    <label for='email'>Email</label>
    <input type='text' name='email' placeholder='Email'>
-   {% with email_error = get_flashed_messages(category_filter=['email']) %}
-   {% if email_error %}
-      {% for msg in email_error %}
+   {% with remail_error = get_flashed_messages(category_filter=['remail']) %}
+   {% if remail_error %}
+      {% for msg in remail_error %}
       <p style="color:red;">{{ msg }}</p>
       {% endfor %}
    {% endif %}
@@ -69,9 +69,9 @@
    <input type='password' name='password' >
    <label for='password_confirm'>Confirm Password</label>
    <input type='password' name='password_confirm' >
-   {% with password_error = get_flashed_messages(category_filter=['password']) %}
-   {% if password_error %}
-      {% for msg in password_error %}
+   {% with rpassword_error = get_flashed_messages(category_filter=['rpassword']) %}
+   {% if rpassword_error %}
+      {% for msg in rpassword_error %}
       <p style="color:red;">{{ msg }}</p>
       {% endfor %}
    {% endif %}

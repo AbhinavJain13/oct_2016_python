@@ -79,8 +79,8 @@ def login():
             "email": email
             }
         attempt_user = mysql.query_db(query,data)
-        print "ATTEMPTED USER: ",attempt_user[0]
-        print "ATTEMPTED USER PASS: ",attempt_user[0]['password']
+        # print "ATTEMPTED USER: ",attempt_user[0]
+        # print "ATTEMPTED USER PASS: ",attempt_user[0]['password']
         if bcrypt.check_password_hash(attempt_user[0]['password'], password):
             session['current_user'] = attempt_user[0]
             session['show_login'] = 0
@@ -113,19 +113,19 @@ def register():
         # VALIDATE FORM data
         errors_flag = False
         if(not validate_letters_2(first_name)):
-            flash('First Name invalid!',category='first')
+            flash('First Name invalid!',category='rfirst')
             errors_flag = True
         if(not validate_letters_2(last_name)):
-            flash('First Name invalid!',category='last')
+            flash('First Name invalid!',category='rlast')
             errors_flag = True
         if(not validate_email(email)):
-            flash('Invalid email address!',category='email')
+            flash('Invalid email address!',category='remail')
             errors_flag = True
         if(not validate_chars_8(password) or not validate_chars_8(password_confirm)):
-            flash('Password not long enough!',category='password')
+            flash('Password not long enough!',category='rpassword')
             errors_flag = True
         if(not passwords_match(password,password_confirm)):
-            flash('Passswords do not match!',category='password')
+            flash('Passswords do not match!',category='rpassword')
             errors_flag = True
         print "ERRORS FLAG: ",errors_flag
 
