@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The Wall</title>
+    <style media="screen">
+      .header h1, h3 {
+        display: inline-block;
+      }
+
+      .header h3. p {
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>The Wall</h1>
+      <h3> Welcome, {{ session['first_name'] }}</h3>
+      <p>
+        <a href="#">log out</a>
+      </p>
+    </div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    {% endwith %}
+    <form class="" action="/message" method="post">
+      <textarea name="message" rows="8" cols="40"></textarea>
+      <input type="submit" name="post_message" value="Post Message">
+    </form>
+    {% for message in messages %}
+      {{ message['first_name'] }}
+      {{ message['last_name'] }}
+      <p>{{ message['message'] }}</p>
+    {% endfor %}
+  </body>
+</html>
