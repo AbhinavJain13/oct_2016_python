@@ -1,36 +1,117 @@
 <html>
 <head>
-  <title>Friends</title>
+  <title>Another Brick</title>
 </head>
 <body>
+<p>Just Another Brick In The Wall</p>
+{% if not session['show_login']: %}
+<p>Hello {{ session['current_user']['first_name'] }} | <a href='/logout'>Logout</a></p>
+{% endif %}
 
-   <h1>Friends</h1>
+<hr/>
 
-  <h2>These are all my friends!</h2>
-  {% for friend in friends %}
-      <form action='/friends/{{ friend['id'] }}/edit' method='post'>
-         <p>ID: {{ friend['id'] }}</p>
-         <p>First Name: {{ friend['first_name'] }}</p>
-         <p>Last Name: {{ friend['last_name'] }}</p>
-         <p>Occupation: {{ friend['occupation'] }}</p>
-         <input type='hidden' name='id' value='{{ friend['id']}}' readonly>
-         <input type='hidden' name='first_name' value='{{ friend['first_name']}}' readonly>
-         <input type='hidden' name='last_name' value='{{ friend['last_name']}}' readonly>
-         <input type='hidden' name="occupation" value='{{ friend['occupation']}}' readonly>
-         <button type="submit" value="Edit">Edit Friend</button>
-      </form>
-      <form action='/friends/{{ friend['id'] }}/delete' method='post'>
-         <button type="submit" value="Delete">Delete Ex-Friend</button>
-         <hr>
-      </form>
-   {% endfor %}
+{% if session['show_login'] %}
+<!-- LOGIN FORM -->
+<h2>LOGIN</h2>
+<form action='/login' method='post'>
+   <label for="email">Email Address</label>
+   <input type="text" name='email' id='email'>
+   {% with email_error = get_flashed_messages(category_filter=['email']) %}
+   {% if email_error %}
+      {% for msg in email_error %}
+      <p style="color:red;">{{ msg }}</p>
+      {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <label for="password">Password</label>
+   <input type="password" name='password' id='password'>
+   {% with password_error = get_flashed_messages(category_filter=['password']) %}
+   {% if password_error %}
+      {% for msg in password_error %}
+      <p style="color:red;">{{ msg }}</p>
+      {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <button type='submit' value='login'>Login</button>
+</form>
+<hr/>
+<!-- REGISTRATION FORM -->
+<h2>REGISTRATION</h2>
+<form action='/registration' method='post'>
+   <label for='first_name'>First Name</label>
+   <input type='text' name='first_name' placeholder='First Name'>
+   {% with first_error = get_flashed_messages(category_filter=['first']) %}
+   {% if first_error %}
+      {% for msg in first_error %}
+      <p style="color:red;">{{ msg }}</p>
+      {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <label for='last_name'>Last Name</label>
+   <input type='text' name='last_name' placeholder='Last Name'>
+   {% with last_error = get_flashed_messages(category_filter=['last']) %}
+   {% if last_error %}
+      {% for msg in last_error %}
+      <p style="color:red;">{{ msg }}</p>
+      {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <label for='email'>Email</label>
+   <input type='text' name='email' placeholder='Email'>
+   {% with email_error = get_flashed_messages(category_filter=['email']) %}
+   {% if email_error %}
+      {% for msg in email_error %}
+      <p style="color:red;">{{ msg }}</p>
+      {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <label for='password'>Password</label>
+   <input type='password' name='password' >
+   <label for='password_confirm'>Confirm Password</label>
+   <input type='password' name='password_confirm' >
+   {% with password_error = get_flashed_messages(category_filter=['password']) %}
+   {% if password_error %}
+      {% for msg in password_error %}
+      <p style="color:red;">{{ msg }}</p>
+      {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <button type='submit' value='submit'>Register</button>
+</form>
+<hr/>
 
-  <h2>Add A Friend</h2>
-   <form action='/friends' method='post'>
-      <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
-      <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
-      <label for="occupation">Occupation:<input type="text" name="occupation" id="occupation"></label>
-      <input type="submit" value="Add">
+{% else: %} <!-- SHOW THE WALL - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+<form action='/messages' method='post'>
+ <label for="message">Post A Message:<input type="text" name="message" id="message"></label>
+ <input type="submit" value="Post A Message">
+</form>
+
+
+<h1>Messages</h1>
+
+{% for message in messages %}
+   <form action='/friends/{{ friend['id'] }}/edit' method='post'>
+      <p>ID: {{ friend['id'] }}</p>
+      <p>First Name: {{ friend['first_name'] }}</p>
+      <p>Last Name: {{ friend['last_name'] }}</p>
+      <p>Occupation: {{ friend['occupation'] }}</p>
+      <input type='hidden' name='id' value='{{ friend['id']}}' readonly>
+      <input type='hidden' name='first_name' value='{{ friend['first_name']}}' readonly>
+      <input type='hidden' name='last_name' value='{{ friend['last_name']}}' readonly>
+      <input type='hidden' name="occupation" value='{{ friend['occupation']}}' readonly>
+      <button type="submit" value="Edit">Edit Friend</button>
    </form>
+   <form action='/friends/{{ friend['id'] }}/delete' method='post'>
+      <button type="submit" value="Delete">Delete Ex-Friend</button>
+      <hr>
+   </form>
+{% endfor %}
+
+{% endif %} <!-- CLOSE IF WRAPPER -->
+
+
+
 </body>
 </html>

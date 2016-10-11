@@ -11,7 +11,7 @@ app.secret_key = 'OnlyInAJeep'
 # encryption
 bcrypt = Bcrypt(app)
 # specify the db
-mysql = MySQLConnector(app,'friendsdb')
+mysql = MySQLConnector(app,'wall')
 
 
 # Functions -----------------------------------------
@@ -30,11 +30,10 @@ def passwords_match(pw1,pw2):
 
 def check_logged_in():
     if session.has_key('current_user'):
-        print "YES!!"
+        #print "User is logged in."
         return True
     else:
         return False
-
 
 
 # Routes --------------------------------------------
@@ -45,18 +44,19 @@ def check_logged_in():
 def index():
     try:
         current_user_id = session['current_user']['id']
-        # with their id, we can retrieve their friends, their posts, etc....
-        query =  '''SELECT * FROM friends WHERE id = :id'''
+
+        query =  '''SELECT * FROM messages WHERE user_id = :id'''
         data = {
             "id" : current_user_id
         }
-        friends = mysql.query_db(query,data)
+        messages = mysql.query_db(query,data)
 
-        return render_template('index.html',friends=friends)
+        return render_template('index.html',messages=messages)
 
     except:
         print "Not logged in"
-        return redirect('/login')
+        session['show_login'] = 1
+        return render_template('index.html')
 
 # LOGIN / LOGOUT -----------------------------------------------
 
@@ -67,28 +67,32 @@ def login():
     try:
         # validation
         email = request.form['email']
+        password = request.form['password']
         if(not validate_email(email)):
             flash("Email is not valid!",category='email')
-            return redirect('/login')
+            return redirect('/')
 
         query =  '''SELECT * FROM users WHERE email= :email LIMIT 1'''
         data = {
-            email: email
+            "email": email
             }
         attempt_user = mysql.query_db(query,data)
-        if bcrypt.check_password_hash(attempt_user[0]['pw_hash'], password):
+        print "ATTEMPTED USER: ",attempt_user[0]
+        print "ATTEMPTED USER PASS: ",attempt_user[0]['password']
+        if bcrypt.check_password_hash(attempt_user[0]['password'], password):
             session['current_user'] = attempt_user[0]
             return redirect('/')
         else:
             flash("Password is not valid!",category='password')
-            return redirect('/login')
+            return redirect('/')
     except:
-        return render_template('login.html')
+        raise
+        return render_template('index.html')
 
 @app.route('/logout',methods=['GET'])
 def logout():
     session.clear()
-    return redirect('/login')
+    return redirect('/')
 
 # REGISTRATION ________________________________________
 
@@ -96,7 +100,6 @@ def logout():
 def register():
     if check_logged_in():
          return redirect('/')
-
     try:
         first_name =        request.form['first_name']
         last_name =         request.form['last_name']
@@ -105,25 +108,26 @@ def register():
         password_confirm =  request.form['password_confirm']
 
         # VALIDATE FORM data
-        errors_flag = 0
+        errors_flag = False
         if(not validate_letters_2(first_name)):
             flash('First Name invalid!',category='first')
-            errors_flag = 1
+            errors_flag = True
         if(not validate_letters_2(last_name)):
             flash('First Name invalid!',category='last')
-            errors_flag = 1
+            errors_flag = True
         if(not validate_email(email)):
             flash('Invalid email address!',category='email')
-            errors_flag = 1
+            errors_flag = True
         if(not validate_chars_8(password) or not validate_chars_8(password_confirm)):
             flash('Password not long enough!',category='password')
-            errors_flag = 1
+            errors_flag = True
         if(not passwords_match(password,password_confirm)):
             flash('Passswords do not match!',category='password')
-            errors_flag = 1
+            errors_flag = True
+        print "ERRORS FLAG: ",errors_flag
 
-        if(errors_flag == 1):
-            return redirect ('/registration')
+        if(errors_flag):
+            return redirect ('/')
 
         pw_hash = bcrypt.generate_password_hash(password)
 
@@ -146,12 +150,16 @@ def register():
         }
         current_user = mysql.query_db(query_full,data_full)
 
+
         session['current_user'] = current_user[0]
+        session['show_login'] = 0
+        #flash("Success! Created user {{}}.format(session['current_user']['first_name'])",category='success')
         return redirect('/')
 
     except:
         #raise
-        return render_template('registration.html')
+        return redirect('/')
+        # return render_template('index.html')
 
 
 # FRIENDS ROUTES --------------------------------------
