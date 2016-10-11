@@ -44,12 +44,16 @@ def check_logged_in():
 def index():
     try:
         current_user_id = session['current_user']['id']
+        session['show_login'] = 0
 
-        query =  '''SELECT * FROM messages WHERE user_id = :id'''
-        data = {
-            "id" : current_user_id
-        }
-        messages = mysql.query_db(query,data)
+        print 'back at INDEX',current_user_id
+
+        # query =  '''SELECT * FROM messages WHERE user_id = :id'''
+        # data = {
+        #     "id" : current_user_id
+        # }
+        # messages = mysql.query_db(query,data)
+        messages = {}
 
         return render_template('index.html',messages=messages)
 
@@ -165,21 +169,21 @@ def register():
 
 # FRIENDS ROUTES --------------------------------------
 
-# /friends
+# /messages
 # Create a new friend
-@app.route('/friends', methods=['POST'])
+@app.route('/messages', methods=['POST'])
 def create():
-    query = "INSERT INTO friends(first_name,last_name,occupation,created_at,updated_at) VALUES (:first_name,:last_name,:occupation,NOW(),NOW())"
+    query = "INSERT INTO messages(user_id,body,created_at,updated_at) VALUES (:user_id,:body,NOW(),NOW())"
 
      # run validations and if they are successful
      # we can create the password hash with bcrypt
 
     data = {
-        "first_name":       request.form['first_name'],
-        "last_name":        request.form['last_name'],
-        "occupation":       request.form['occupation']
+        "user_id":       session['current_user']['id'],
+        "body":          request.form['message']
         }
     mysql.query_db(query,data)
+    session['show_login'] = 0
     return redirect('/')
 
 # /friends/<id>
