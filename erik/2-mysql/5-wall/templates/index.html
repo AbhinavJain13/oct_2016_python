@@ -90,21 +90,21 @@
 <h1>Messages</h1>
 {% for message in messages %}
    {% if message.msgid != messages[loop.index0-1].msgid %}
-   {{ message.mbody }}
+      {{ message.mbody }}
 
-   <br/>
-   {% for msg in messages %}
-      {% if msg.msgid == message.msgid and msg.cbody %}
-         {{ msg.cbody }}
-         <br/>
-      {% endif %}
-   {% endfor %}
-   <form action='/comments' method='post'>
-      <input type="text" name="comment">
-      <input type="hidden" name="msgid" value="{{ message.msgid}}">
-      <input type="hidden" name="muserid" value="{{ message.muserid}}">
-      <input type="submit" value="Add Comment">
-   </form>
+      <br/>
+      {% for msg in messages %}
+         {% if msg.msgid == message.msgid and msg.cbody %}
+            {{ msg.cbody }}
+            <br/>
+         {% endif %}
+      {% endfor %}
+      <form action='/comments' method='post'>
+         <input type="text" name="comment">
+         <input type="hidden" name="msgid" value="{{ message.msgid}}">
+         <input type="hidden" name="muserid" value="{{ message.muserid}}">
+         <input type="submit" value="Add Comment">
+      </form>
    {% endif %}
 {% endfor %}
 
