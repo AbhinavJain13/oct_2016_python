@@ -50,6 +50,7 @@ def index():
         query =  '''SELECT m.id msgid, m.user_id muserid, m.body mbody, m.updated_at mdate, c.id cmtid, c.body cbody
                     FROM messages m
                     LEFT JOIN comments c ON m.id = c.message_id
+                    ORDER BY msgid,cmtid DESC
                  '''
         all_messages = mysql.query_db(query)
         print 'got back this messages: ',all_messages

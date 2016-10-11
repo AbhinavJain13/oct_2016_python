@@ -1,0 +1,10 @@
+[
+{u'cmtid': 2L, u'mdate': datetime.datetime(2016, 10, 10, 19, 37, 16), u'msgid': 5L, u'mbody': u'this is just a text', u'cbody': u'comment', u'muserid': 5L},
+{u'cmtid': 3L, u'mdate': datetime.datetime(2016, 10, 10, 19, 37, 16), u'msgid': 5L, u'mbody': u'this is just a text', u'cbody': u'comment 2', u'muserid': 5L},
+{u'cmtid': 4L, u'mdate': datetime.datetime(2016, 10, 10, 19, 37, 16), u'msgid': 5L, u'mbody': u'this is just a text', u'cbody': u'comment 3', u'muserid': 5L},
+{u'cmtid': 5L, u'mdate': datetime.datetime(2016, 10, 10, 19, 37, 16), u'msgid': 5L, u'mbody': u'this is just a text', u'cbody': u'comment 4', u'muserid': 5L},
+{u'cmtid': None, u'mdate': datetime.datetime(2016, 10, 10, 19, 39, 23), u'msgid': 6L, u'mbody': u'a second msg', u'cbody': None, u'muserid': 5L},
+{u'cmtid': None, u'mdate': datetime.datetime(2016, 10, 10, 19, 57, 15), u'msgid': 7L, u'mbody': u'another', u'cbody': None, u'muserid': 5L},
+{u'cmtid': None, u'mdate': datetime.datetime(2016, 10, 10, 20, 4, 47), u'msgid': 8L, u'mbody': u'dsdsd', u'cbody': None, u'muserid': 5L},
+{u'cmtid': None, u'mdate': datetime.datetime(2016, 10, 10, 21, 5, 26), u'msgid': 9L, u'mbody': u'sdsd', u'cbody': None, u'muserid': 5L}
+]
