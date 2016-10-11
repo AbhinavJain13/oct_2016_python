@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>the wall</title>
+      <link rel="stylesheet" type="text/css" href="{{url_for('static',filename="main.css")}}">
+  </head>
+  <body>
+    <div id="container">
+
+    <div id="banner">
+
+      <h1>Coding Dojo Wall</h1>
+      {%if users%}
+      {%for user in users%}
+      <p>Welcome: {{user.first_name}} {{user.last_name}}<a href="/logout"><button type="button" name="Logout">Logout</button></a></p>
+      {%endfor%}
+      {%endif%}
+      {%if not users%}
+      <p>Not Logged in<a href="/"><button type="button" name="register">Login / Register</button></a></p>
+      {%endif%}
+
+    </div>
+
+      <div id="content">
+        <div id="message_box">
+          {%if messages%}
+          {%for message in messages%}
+          {%for user in users%}
+          {%if user.id==message.user_id%}
+          <h2>Edit message</h2>
+          <form  action="/edit/messages/{{message.id}}" id="message" method="post">
+          <textarea form="message" name="edit_message" rows="5" cols="165">{{message.message}}</textarea>
+          <input type="submit" name="submit" value="Edit Message">
+          </form>
+          {%endif%}
+          {%endfor%}
+          {%endfor%}
+          {%endif%}
+        </div>
+        <div class="comment_box">
+          {%if comments%}
+          {%for comment in comments%}
+          {%for user in users%}
+          {%if comment.user_id==user.id%}
+          <h2>Edit comment</h2>
+          <form  action="/edit/comment/{{comment['id']}}" id='comment_{{comment['id']}}' method="post">
+          <textarea form="comment_{{comment['id']}}" name="edit_comment" rows="5" cols="165">{{comment.comment}}</textarea>
+          <input type="submit" name="submit" value="Edit Comment">
+
+          </form>
+            {%endif%}
+            {%endfor%}
+            {%endfor%}
+            {%endif%}
+            <a href="/main"><button type="button" name="return">Return</button></a>
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
