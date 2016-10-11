@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>OMG ninjasss</title>
+    <style media="screen">
+      img {
+        width: 300px;
+        height: 400px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    {% if color == 'purple' %}
+    <img src="{{ url_for('static', filename='donatello.jpg') }}" alt="none"/>
+    {% elif color == 'blue' %}
+    <img src="{{ url_for('static', filename='leonardo.jpg') }}" alt="none" />
+    {% elif color == 'orange' %}
+    <img src="{{ url_for('static', filename='michelangelo.jpg') }}" alt="none" />
+    {% elif color == 'red' %}
+    <img src="{{ url_for('static', filename='raphael.jpg') }}" alt="none" />
+    {% else %}
+    <img src="{{ url_for('static', filename='notapril.jpg') }}" alt="none" />
+    {% endif %}
+  </body>
+</html>

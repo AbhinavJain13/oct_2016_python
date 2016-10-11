@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<!-- login form -->
+  {% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+  {% endwith %}
+  <form class="login" action="/login" method="post">
+    <input type="text" name="email" placeholder='Email...' value="">
+    <input type="password" name="password" placeholder='Password...' value="">
+    <input type="submit" name="login" value="Login">
+  </form>
+  <form class="" action="/register" method="post">
+    <input type="text" name="first_name" value="" placeholder='First Name'>
+    <input type="text" name="last_name" value="" placeholder='Last Name'>
+    <input type="text" name="email" value="" placeholder='Email'>
+    <input type="password" name="password" value="" placeholder='Password'>
+    <input type="password" name="confirm" value="" placeholder='Confirm Password'>
+    <input type="Submit" name="register" value="Register">
+  </form>
+</body>
+</html>
