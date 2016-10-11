@@ -142,7 +142,7 @@ Intro to models (the "M" in MTV)
 Assignments|
 ---|
 Wall ERD|
-Friendships 1|
+[Friendships 1](https://github.com/madjaqk/friends_orm)|
 *NB: Don't do 'Frienships continued' or 'World Database ORM' yet*|
 Courses **GitHub**|
 E-mail Validation **GitHub**|
