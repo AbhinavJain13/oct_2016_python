@@ -1,0 +1,27 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <title>Login and Registration</title>
+    <!-- linking a css style sheet -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>You are now logged in!</h1>
+            <form class="frmUser" action="/user/delete" method="post">
+              <div class="inline">{{user[0].first_name}}</div>
+              <div class="inline">{{user[0].last_name}}</div>
+              <div class="inline">{{user[0].email}}</div>
+              <div class="inline">{{(user[0].created_at).strftime("%m/%d/%Y %H:%M%p")}}</div>
+              <a class="inline" href="/user/edit"><button type="button" name="btnEdit">Edit</button></a>
+              <button class="inline" type="submit" name="btnDelete">Delete</button>
+            </form>
+    </div>
+
+
+<!-- linking a javascript file -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!-- linking an image -->
+<!-- <img src="{{ url_for('static', filename='img/img.png') }}"> -->
+  </body>
+</html>

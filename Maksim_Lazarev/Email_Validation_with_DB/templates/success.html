@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Email Validation with DB</title>
+    <!-- linking a css style sheet -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+    <div class="wrapper">
+      {% if (email) %}
+        <h3 class="msg pass">
+          The email address you entered (
+          {{email}}) is a VALID email address! Thank you!
+        </h3>
+      {% endif %}
+      <br><h3><u>Email Addresses Entered:</u></h3>
+      <br><ul>
+        {% for useremail in useremails %}
+          <li>{{useremail.email}}   {{(useremail.created_at).strftime("%m/%d/%Y %H:%M%p")}} <a href="/delete/{{useremail.id}}"><button type="button" name="button">Delete</button></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+
+<!-- linking a javascript file -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!-- linking an image -->
+<!-- <img src="{{ url_for('static', filename='img/img.png') }}"> -->
+  </body>
+</html>
