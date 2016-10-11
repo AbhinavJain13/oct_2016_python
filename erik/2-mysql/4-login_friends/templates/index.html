@@ -91,8 +91,18 @@
 
 <h1>Messages</h1>
 
-{% for message in messages %}
-   <form action='/friends/{{ friend['id'] }}/edit' method='post'>
+{{ messages }}
+
+<!-- {% for key,data in all_messages %}
+
+{{key}}<br/>
+{{data}}
+<hr/>
+{% endfor %} -->
+
+<!-- {% for msg in all_messages: %}
+{{ msg }} -->
+   <!-- <form action='/friends/{{ friend['id'] }}/edit' method='post'>
       <p>ID: {{ friend['id'] }}</p>
       <p>First Name: {{ friend['first_name'] }}</p>
       <p>Last Name: {{ friend['last_name'] }}</p>
@@ -106,8 +116,8 @@
    <form action='/friends/{{ friend['id'] }}/delete' method='post'>
       <button type="submit" value="Delete">Delete Ex-Friend</button>
       <hr>
-   </form>
-{% endfor %}
+   </form> -->
+<!-- {% endfor %} -->
 
 {% endif %} <!-- CLOSE IF WRAPPER -->
 

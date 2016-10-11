@@ -35,8 +35,6 @@ def check_logged_in():
     else:
         return False
 
-
-
 # Routes --------------------------------------------
 
 # /
@@ -45,18 +43,19 @@ def check_logged_in():
 def index():
     try:
         current_user_id = session['current_user']['id']
+        session['show_login'] = 0
         # with their id, we can retrieve their friends, their posts, etc....
-        query =  '''SELECT * FROM friends WHERE id = :id'''
+        query =  '''SELECT * FROM messages WHERE user_id = :id'''
         data = {
-            "id" : current_user_id
+            "id" : session['current_user']['id']
         }
-        friends = mysql.query_db(query,data)
+        messages = mysql.query_db(query,data)
 
-        return render_template('index.html',friends=friends)
+        return render_template('index.html',messages=messages)
 
     except:
         print "Not logged in"
-        return redirect('/login')
+        return redirect('/')
 
 # LOGIN / LOGOUT -----------------------------------------------
 
@@ -151,26 +150,23 @@ def register():
 
     except:
         #raise
-        return render_template('registration.html')
+        return redirect('/')
 
 
-# FRIENDS ROUTES --------------------------------------
+# MESSAGES ROUTES --------------------------------------
 
-# /friends
-# Create a new friend
-@app.route('/friends', methods=['POST'])
+# /messages
+# Create a new message
+@app.route('/messages', methods=['POST'])
 def create():
-    query = "INSERT INTO friends(first_name,last_name,occupation,created_at,updated_at) VALUES (:first_name,:last_name,:occupation,NOW(),NOW())"
-
-     # run validations and if they are successful
-     # we can create the password hash with bcrypt
+    query = "INSERT INTO messages(user_id,body,created_at,updated_at) VALUES (:user_id,:body,NOW(),NOW())"
 
     data = {
-        "first_name":       request.form['first_name'],
-        "last_name":        request.form['last_name'],
-        "occupation":       request.form['occupation']
+        "user_id":       session['current_user']['id'],
+        "body":          request.form['message']
         }
     mysql.query_db(query,data)
+    session['show_login'] = 0
     return redirect('/')
 
 # /friends/<id>

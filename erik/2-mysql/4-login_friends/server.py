@@ -48,14 +48,14 @@ def index():
 
         print 'back at INDEX',current_user_id
 
-        # query =  '''SELECT * FROM messages WHERE user_id = :id'''
-        # data = {
-        #     "id" : current_user_id
-        # }
-        # messages = mysql.query_db(query,data)
-        messages = {}
-
-        return render_template('index.html',messages=messages)
+        query =  '''SELECT * FROM messages WHERE user_id = :id'''
+        data = {
+            "id" : current_user_id
+        }
+        all_messages = mysql.query_db(query,data)
+        print 'got back this messages: ',all_messages
+        session['show_login'] = 0
+        return render_template('index.html',messages=all_messages)
 
     except:
         print "Not logged in"
