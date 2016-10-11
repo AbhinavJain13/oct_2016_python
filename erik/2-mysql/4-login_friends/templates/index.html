@@ -82,48 +82,23 @@
 
 {% else: %} <!-- SHOW THE WALL - - - - - - - - - - - - - - - - - - - - - - -->
 
-
 <form action='/messages' method='post'>
  <label for="message">Post A Message:<input type="text" name="message" id="message"></label>
  <input type="submit" value="Post A Message">
 </form>
 
-
 <h1>Messages</h1>
 
 {% for message in messages %}
-
-{{ message }}<br/>
-   <form action='/comment' method='post'>
+{{ message.mbody }}<br/>
+{% if message.cbody: %}{{ message.cbody }}{% endif %}
+   <form action='/comments' method='post'>
+      <input type="text" name="comment">
+      <input type="hidden" name="msgid" value="{{ message.msgid}}">
+      <input type="hidden" name="muserid" value="{{ message.muserid}}">
+      <input type="submit" value="Add Comment">
    </form>
-
 {% endfor %}
-
-<!-- {% for key,data in all_messages %}
-
-{{key}}<br/>
-{{data}}
-<hr/>
-{% endfor %} -->
-
-<!-- {% for msg in all_messages: %}
-{{ msg }} -->
-   <!-- <form action='/friends/{{ friend['id'] }}/edit' method='post'>
-      <p>ID: {{ friend['id'] }}</p>
-      <p>First Name: {{ friend['first_name'] }}</p>
-      <p>Last Name: {{ friend['last_name'] }}</p>
-      <p>Occupation: {{ friend['occupation'] }}</p>
-      <input type='hidden' name='id' value='{{ friend['id']}}' readonly>
-      <input type='hidden' name='first_name' value='{{ friend['first_name']}}' readonly>
-      <input type='hidden' name='last_name' value='{{ friend['last_name']}}' readonly>
-      <input type='hidden' name="occupation" value='{{ friend['occupation']}}' readonly>
-      <button type="submit" value="Edit">Edit Friend</button>
-   </form>
-   <form action='/friends/{{ friend['id'] }}/delete' method='post'>
-      <button type="submit" value="Delete">Delete Ex-Friend</button>
-      <hr>
-   </form> -->
-<!-- {% endfor %} -->
 
 {% endif %} <!-- CLOSE IF WRAPPER -->
 

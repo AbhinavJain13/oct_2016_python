@@ -46,11 +46,11 @@ def index():
         current_user_id = session['current_user']['id']
         session['show_login'] = 0
 
-        # GET MESSAGES
-        query =  '''SELECT m.id as msgid, m.body as mbody, m.updated_at as mdate, c.id as cmtid, c.body as cbody
+        # GET MESSAGES & COMMENTS
+        query =  '''SELECT m.id msgid, m.user_id muserid, m.body mbody, m.updated_at mdate, c.id cmtid, c.body cbody
                     FROM messages m
                     LEFT JOIN comments c ON m.id = c.message_id
-                    '''
+                 '''
         all_messages = mysql.query_db(query)
         print 'got back this messages: ',all_messages
         return render_template('index.html',messages=all_messages)
@@ -184,59 +184,72 @@ def create():
     session['show_login'] = 0
     return redirect('/')
 
+@app.route('/comments', methods=['POST'])
+def createcomment():
+    query = "INSERT INTO comments(user_id,message_id,body,created_at,updated_at) VALUES (:user_id,:message_id,:body,NOW(),NOW())"
+
+    data = {
+        "user_id":          request.form['muserid'],
+        "message_id":       request.form['msgid'],
+        "body":             request.form['comment']
+        }
+    mysql.query_db(query,data)
+    session['show_login'] = 0
+    return redirect('/')
+
 # /friends/<id>
 # Show a single friend by id
-@app.route('/friends/<id>',methods=['POST','GET'])
-def show(id):
-    # POST it is an update
-    if request.method == "POST":
-        query = "UPDATE friends SET first_name = :first_name, last_name = :last_name, occupation = :occupation WHERE id = :id"
-        data = {
-                 'first_name':  request.form['first_name'],
-                 'last_name':   request.form['last_name'],
-                 'occupation':  request.form['occupation'],
-                 'id':          request.form['id']
-               }
-        mysql.query_db(query, data)
-        return redirect('/')
-
-    # GET it is a show a single friend
-    else:
-        query = "SELECT * FROM friends WHERE id = :id"
-        data = {'id': id}
-        friends = mysql.query_db(query, data)
-        return render_template('index.html', friends=friends)
-
-# Update a friend by id
-# /friends/<id>/edit
-@app.route('/friends/<id>/edit', methods=['POST','GET'])
-def update(id):
-    # POST it is an update
-    if request.method == "POST":
-        friend={
-            'first_name':  request.form['first_name'],
-            'last_name':   request.form['last_name'],
-            'occupation':  request.form['occupation'],
-            'id':          request.form['id']
-        }
-        print 'posted friend: ',friend
-        return render_template('edit.html', friend=friend)
-    # GET the information and ready the page for editing
-    else:
-        query = "SELECT * FROM friends WHERE id = :id"
-        data = {'id': id}
-        print "query data:",data
-        friend = mysql.query_db(query, data)
-        print 'returned friend: ',friend
-        return render_template('edit.html', friend=friend[0])
-
-# /friends/<id>/delete
-# Delete a friend by id
-@app.route('/friends/<id>/delete', methods=['POST'])
-def delete(id):
-    query = "DELETE FROM friends WHERE id = :id"
-    data = {'id': id}
-    mysql.query_db(query, data)
-    return redirect('/')
+# @app.route('/friends/<id>',methods=['POST','GET'])
+# def show(id):
+#     # POST it is an update
+#     if request.method == "POST":
+#         query = "UPDATE friends SET first_name = :first_name, last_name = :last_name, occupation = :occupation WHERE id = :id"
+#         data = {
+#                  'first_name':  request.form['first_name'],
+#                  'last_name':   request.form['last_name'],
+#                  'occupation':  request.form['occupation'],
+#                  'id':          request.form['id']
+#                }
+#         mysql.query_db(query, data)
+#         return redirect('/')
+#
+#     # GET it is a show a single friend
+#     else:
+#         query = "SELECT * FROM friends WHERE id = :id"
+#         data = {'id': id}
+#         friends = mysql.query_db(query, data)
+#         return render_template('index.html', friends=friends)
+#
+# # Update a friend by id
+# # /friends/<id>/edit
+# @app.route('/friends/<id>/edit', methods=['POST','GET'])
+# def update(id):
+#     # POST it is an update
+#     if request.method == "POST":
+#         friend={
+#             'first_name':  request.form['first_name'],
+#             'last_name':   request.form['last_name'],
+#             'occupation':  request.form['occupation'],
+#             'id':          request.form['id']
+#         }
+#         print 'posted friend: ',friend
+#         return render_template('edit.html', friend=friend)
+#     # GET the information and ready the page for editing
+#     else:
+#         query = "SELECT * FROM friends WHERE id = :id"
+#         data = {'id': id}
+#         print "query data:",data
+#         friend = mysql.query_db(query, data)
+#         print 'returned friend: ',friend
+#         return render_template('edit.html', friend=friend[0])
+#
+# # /friends/<id>/delete
+# # Delete a friend by id
+# @app.route('/friends/<id>/delete', methods=['POST'])
+# def delete(id):
+#     query = "DELETE FROM friends WHERE id = :id"
+#     data = {'id': id}
+#     mysql.query_db(query, data)
+#     return redirect('/')
 
 app.run(debug=True)
