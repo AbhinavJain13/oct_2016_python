@@ -22,11 +22,9 @@
 # Now for the first instance of the animal (instance called 'animal'), try calling fly() or pet() and make sure this doesn't work.
 
 class Animal(object):
-    def __init__(self,name=None,health=None):
-        pass
-
-    self.name = name
-    self.health = health
+    def __init__(self,name=None):
+        self.name = name
+        self.health = 100
 
     def walk(self):
         self.health -= 1
@@ -39,18 +37,30 @@ class Animal(object):
         return self
 
 class Dog(Animal):
-    def __init__(self):
-        super(Dog,self).__init_()
+    def __init__(self,name):
+        super(Dog,self).__init__(name)
         self.health = 150
-        return self
+        self.name = name
     def pet(self):
         self.health += 5
         return self
 
 class Dragon(Animal):
-    def __init__(self):
-        super(Dragon,self).__init__()
+    def __init__(self,name):
+        super(Dragon,self).__init__(name)
         self.health =  170
     def fly(self):
         self.health -= 5
         return self
+
+pig = Animal('Pig')
+# walk three times, run twice, and have it display its health
+pig.walk().walk().walk().run().run().displayHealth()
+
+doggie = Dog('Lassie')
+# walk() three times, run() twice, pet() once, and have it displayHealth
+doggie.walk().walk().walk().run().run().pet().displayHealth()
+
+bigdragon = Dragon('Blow Hard')
+bigdragon.walk().walk().walk().run().run().fly().displayHealth()
+# walk() three times, run() twice, fly() twice, and have it displayHealth()
