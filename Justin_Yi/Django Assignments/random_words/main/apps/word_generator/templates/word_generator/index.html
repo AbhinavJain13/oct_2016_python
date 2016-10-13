@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> random word</title>
+  <!-- {% load staticfiles %} -->
+  <!-- <link rel="stylesheet" href="{% static 'time_display/css/main.css' %}"media="screen" title="no title"  charset="utf-8"> -->
+</head>
+  <body>
+    <h1> Random Word (attempt #{{count}})</h1>
+    <form action = "/attempts" method = "get">
+      {% csrf_token %}
+      {{request.session.random}}
+      <br>
+      <input type = "submit" value = "Generate!" name = "random">
+    </form>
+  </body>
+</html>
