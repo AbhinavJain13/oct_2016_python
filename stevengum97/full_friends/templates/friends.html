@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Full Friends</title>
+</head>
+<body>
+    <div>
+        <a href="/"><button>Friend List!</button></a>
+        <h1>Input/Update Friend Info!</h1>
+            {% with messages = get_flashed_messages()%}
+            {% if messages %}
+            {% for message in messages %}
+                <h1 style="color:red;">{{message}}</h1>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <div id="form_box">
+                <form action="" method="post">
+                    <h4>First Name:   <input type="text" name="first_name"></h4>
+                    <h4>Last Name:   <input type="text" name="last_name"></h4>
+                    <h4>Email:    <input type="text" name="email"></h4>
+                    <input type="submit" name="form" value="Change friends table">
+                </form>
+            </div>
+
+    </div>
+
+</body>
+</html>
