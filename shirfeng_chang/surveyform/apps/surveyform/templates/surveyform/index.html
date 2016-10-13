@@ -1,0 +1,21 @@
+<html>
+    <head>
+       <title>CHANGO UNCHANG'D</title>
+    </head>
+    <style>
+      body{
+        font-family: sans-serif;
+      }
+    </style>
+    <body>
+      <form action='/survey/process' method='post'>
+          {% csrf_token %}
+          <p>Your Name: <input type='text' name='name'></p>
+          <p>Dojo Location: <select name="loc"><option>1</option><option>2</option><option>3</option></select></p>
+          <p>Favorite Language: <select name="lang"><option>A</option><option>B</option><option>C</option></select></p>
+          <p>Comment (Optional)</p>
+          <textarea name="comment"></textarea>
+          <input type='submit' value='Button'>
+      </form>
+    </body>
+</html>

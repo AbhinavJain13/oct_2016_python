@@ -1,0 +1,17 @@
+<html>
+    <head>
+       <title>CHANGO UNCHANG'D</title>
+    </head>
+    <style>
+      body{
+        font-family: sans-serif;
+      }
+    </style>
+    <body>
+      <h1>Submitted Info</h1>
+      <p>Name: {{request.session.name.0}}</p>
+      <p>Dojo Location: {{request.session.loc.0}}</p>
+      <p>Favorite Language: {{request.session.lang.0}}</p>
+      <p>Comment: {{request.session.comment}}</p>
+    </body>
+</html>
