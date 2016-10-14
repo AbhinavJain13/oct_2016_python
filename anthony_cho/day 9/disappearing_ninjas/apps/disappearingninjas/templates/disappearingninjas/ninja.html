@@ -1,0 +1,12 @@
+<html>
+<head>
+    <title>Ninja</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'disappearingninjas/css/styles.css' %}">
+</head>
+<body>
+    {% for color in ninjas.values %}
+        <img src="{% static 'disappearingninjas/images/' %}{{color}}" alt="" />
+    {% endfor %}
+</body>
+</html>
