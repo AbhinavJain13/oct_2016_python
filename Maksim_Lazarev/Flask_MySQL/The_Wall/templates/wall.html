@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>The Wall</title>
+   <!-- linking a css style sheet -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+ </head>
+ <body>
+  <header>
+    <h1 class="inline">Coding Dojo Wall</h1>
+    <h3 class="inline">Welcome {{user[0].first_name}} !</h3>
+    <a class="inline" href="/user/profile">Profile</a>
+    <a class="inline" href="/">Log Off</a>
+  </header>
+  <div class="wrapper">
+   <form class="frmMsgPost" action="/message/post" method="post">
+      <h3>Post a message</h3>
+      <!-- <input id="txtMsg" type="text" name="txtMsg" value=""> -->
+      <textarea name="txtMsg" rows="8" cols="112"></textarea>
+      <button id="btnMsgSubmit" type="submit" name="btnMsgSubmit">Post a message</button>
+    </form>
+
+      {% for msg_comment in msg_comments %}
+        <ul class="txtMsg">
+        {% if (msg_comment[0].user_id==session['user_id']) %}
+          <li><b>{{msg_comment[0].name}} - {{(msg_comment[0].created_at).strftime("%B %d %Y")}}</b>
+          <form class="frmBtnDel" action="/message/delete" method="post">
+            <input type="hidden" name="msg_id" value="{{msg_comment[0].id}}">
+            <button class="btnMsgDel" type="submit" name="btnMsgDel">Delete</button>
+          </form></li>
+        {% else %}
+          <li><b>{{msg_comment[0].name}} - {{(msg_comment[0].created_at).strftime("%B %d %Y")}}</b></li>
+        {% endif%}
+          <li class="li_25">{{msg_comment[0].message}}</li>
+          {% for comment in msg_comment[1] %}
+            <ul class="comment">
+              <li><b>{{comment.name}} - {{(comment.created_at).strftime("%B %d %Y")}}</b></li>
+              <li class="li_25">{{comment.comment}}</li>
+            </ul>
+          {% endfor %}
+          <form class="frmCmtPost" action="/comment/post" method="post">
+             <h3>Post a comment</h3>
+             <textarea name="txtCmt" rows="6" cols="104"></textarea>
+             <input type="hidden" name="msg_id" value="{{msg_comment[0].id}}">
+             <button id="btnCmtSubmit" type="submit" name="btnCmtSubmit">Post a comment</button>
+           </form>
+        </ul>
+      {% endfor %}
+  </div>
+
+<!-- linking a javascript file -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!-- linking an image -->
+<!-- <img src="{{ url_for('static', filename='img/img.png') }}"> -->
+ </body>
+</html>

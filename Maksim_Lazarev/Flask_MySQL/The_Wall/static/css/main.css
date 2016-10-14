@@ -1,0 +1,111 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+.wrapper{
+  width: 800px;
+  margin: 0 auto;
+  display: block;
+  padding: 50px;
+  position: relative;
+}
+.block{
+  position: relative;
+  padding-bottom: 20px;
+}
+.frmUser{
+width: 400px;
+border: 1px solid black;
+padding: 50px;
+position: relative;
+}
+.input_right{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  display: inline-block;
+    width: 200px;
+}
+label{
+  padding-right: 50px;
+}
+#btnRegister, #btnUpdate, #btnLogin {
+  position: absolute;
+  width: 100px;
+  height: 29px;
+  right: 50px;
+  bottom: 20px;
+}
+table{
+  margin-top: 20px;
+}
+.error{
+  color: red;
+}
+.pass {
+  color: green;
+}
+ul{
+  width: 700px;
+  list-style: none;
+  line-height: 1.5em;
+}
+.inline {
+  display: inline;
+}
+.frmUserProfile{
+  margin-top: 50px;
+}
+header{
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
+header h3{
+  margin-left: 350px;
+  margin-right: 50px;
+}
+.frmMsgPost{
+  width: 800px;
+  position: relative;
+  /*margin: 0 auto;*/
+  /*display: block;*/
+  /*padding: 50px;*/
+}
+#txtMsg{
+  /*margin: 0 auto;*/
+  width: 776px;
+  height: 100px;
+  padding: 10px;
+  /*overflow-y: scroll;*/
+}
+.li_25{
+  margin-left: 25px;
+}
+#btnMsgSubmit, #btnCmtSubmit {
+  position: absolute;
+  width: 100px;
+  height: 29px;
+  right: 0px;
+  margin-top: 10px;
+  /*bottom: 20px;*/
+}
+.txtMsg{
+  margin-top: 50px;
+}
+.frmCmtPost{
+  width: 750px;
+  position: relative;
+  padding-left: 50px;
+  margin-top: 20px;
+  /*margin: 0 auto;*/
+  /*display: block;*/
+  /*padding: 50px;*/
+}
+.comment{
+  margin-top: 20px;
+  margin-left: 50px;
+}
+.frmBtnDel{
+  margin-left: 20px;
+  display: inline;
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% load staticfiles %}
+      <!-- The line above tells Django to be ready to listen for static files -->
+      <link rel="stylesheet" href="{% static 'first_app/css/main.css' %}"media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+      <h1>Hello Users!</h1>
+      <h3>Hello, {{name}}.</h3>
+      <p>users: {{users}}</p>
+<!-- After building out the blocks, I change them to different block type elements depending on the internal content.  -->
+<!--I also go through the CSS and normalize it (meaning duplicate elements/classes I try to structure together)  -->
+  </body>
+</html>
