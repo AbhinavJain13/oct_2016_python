@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>TNMT</title>
+</head>
+<body>
+{% if not show_ninjas %}
+<p>NO NINJAS HERE</p>
+
+{% else %}
+
+{% load static %}
+{% if ninja_color == 'purple' or ninja_color == 'hacker'  %}
+<img src="{% static "" %}turtles/img/{{ ninja_color }}.jpg ">
+{% else %}
+<img src="{% static "" %}turtles/img/{{ ninja_color }}.png ">
+{% endif %}
+
+
+{% endif %}
+
+
+</body>
+</html>
