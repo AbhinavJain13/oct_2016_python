@@ -41,7 +41,7 @@ def survey_process(request):
 
 # /result
 def survey_result(request):
-    request.session['show_form'] = 1
+    request.session['show_form'] = 0
     return render(request,'surveyform/index.html')
 
 # /reset
