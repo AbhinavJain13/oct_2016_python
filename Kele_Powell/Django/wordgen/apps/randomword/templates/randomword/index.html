@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    <title>Date and time!</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'randomword/css/main.css' %}" media="screen">
+  </head>
+  <body>
+    <div id="container">
+      <div id="head">
+        <h3>Current attempt: #{{count}} </h3>
+
+      </div>
+      <div id="main">
+          <h1>{{request.session.pizza}}</h1>
+
+
+          <a href="/random"><button type="button" name="button">Generate</button></a>
+            <a href="/clear"><button type="button" name="button">Clear</button></a>
+      </div>
+    </div>
+  </body>
+</html>
