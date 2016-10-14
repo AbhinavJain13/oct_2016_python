@@ -63,6 +63,8 @@ def index():
 
 # LOGIN / LOGOUT -----------------------------------------------
 
+# /login
+# Login a user
 @app.route('/login',methods=['POST','GET'])
 def login():
     if check_logged_in():
@@ -93,6 +95,8 @@ def login():
         raise
         return render_template('index.html')
 
+# /logout
+# Log out the user
 @app.route('/logout',methods=['GET'])
 def logout():
     session.clear()
@@ -100,6 +104,8 @@ def logout():
 
 # REGISTRATION ________________________________________
 
+# /registration
+# Create a new user
 @app.route('/registration',methods=['POST','GET'])
 def register():
     if check_logged_in():
@@ -154,7 +160,6 @@ def register():
         }
         current_user = mysql.query_db(query_full,data_full)
 
-
         session['current_user'] = current_user[0]
         session['show_login'] = 0
         #flash("Success! Created user {{}}.format(session['current_user']['first_name'])",category='success')
@@ -163,19 +168,18 @@ def register():
     except:
         #raise
         return redirect('/')
-        # return render_template('index.html')
 
 
 # MESSAGES ROUTES --------------------------------------
 
 # /messages
-# Create a new friend
+# Create a new message
 @app.route('/messages', methods=['POST'])
 def create():
-    query = "INSERT INTO messages(user_id,body,created_at,updated_at) VALUES (:user_id,:body,NOW(),NOW())"
 
-     # run validations and if they are successful
-     # we can create the password hash with bcrypt
+    # run validations and if they are successful...
+
+    query = "INSERT INTO messages(user_id,body,created_at,updated_at) VALUES (:user_id,:body,NOW(),NOW())"
 
     data = {
         "user_id":       session['current_user']['id'],
@@ -185,8 +189,13 @@ def create():
     session['show_login'] = 0
     return redirect('/')
 
+# /comments
+# Create a new comment
 @app.route('/comments', methods=['POST'])
 def createcomment():
+
+    # run validations and if they are successful...
+
     query = "INSERT INTO comments(user_id,message_id,body,created_at,updated_at) VALUES (:user_id,:message_id,:body,NOW(),NOW())"
 
     data = {
@@ -197,60 +206,5 @@ def createcomment():
     mysql.query_db(query,data)
     session['show_login'] = 0
     return redirect('/')
-
-# /friends/<id>
-# Show a single friend by id
-# @app.route('/friends/<id>',methods=['POST','GET'])
-# def show(id):
-#     # POST it is an update
-#     if request.method == "POST":
-#         query = "UPDATE friends SET first_name = :first_name, last_name = :last_name, occupation = :occupation WHERE id = :id"
-#         data = {
-#                  'first_name':  request.form['first_name'],
-#                  'last_name':   request.form['last_name'],
-#                  'occupation':  request.form['occupation'],
-#                  'id':          request.form['id']
-#                }
-#         mysql.query_db(query, data)
-#         return redirect('/')
-#
-#     # GET it is a show a single friend
-#     else:
-#         query = "SELECT * FROM friends WHERE id = :id"
-#         data = {'id': id}
-#         friends = mysql.query_db(query, data)
-#         return render_template('index.html', friends=friends)
-#
-# # Update a friend by id
-# # /friends/<id>/edit
-# @app.route('/friends/<id>/edit', methods=['POST','GET'])
-# def update(id):
-#     # POST it is an update
-#     if request.method == "POST":
-#         friend={
-#             'first_name':  request.form['first_name'],
-#             'last_name':   request.form['last_name'],
-#             'occupation':  request.form['occupation'],
-#             'id':          request.form['id']
-#         }
-#         print 'posted friend: ',friend
-#         return render_template('edit.html', friend=friend)
-#     # GET the information and ready the page for editing
-#     else:
-#         query = "SELECT * FROM friends WHERE id = :id"
-#         data = {'id': id}
-#         print "query data:",data
-#         friend = mysql.query_db(query, data)
-#         print 'returned friend: ',friend
-#         return render_template('edit.html', friend=friend[0])
-#
-# # /friends/<id>/delete
-# # Delete a friend by id
-# @app.route('/friends/<id>/delete', methods=['POST'])
-# def delete(id):
-#     query = "DELETE FROM friends WHERE id = :id"
-#     data = {'id': id}
-#     mysql.query_db(query, data)
-#     return redirect('/')
 
 app.run(debug=True)
