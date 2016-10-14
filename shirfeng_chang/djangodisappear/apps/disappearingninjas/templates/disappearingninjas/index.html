@@ -1,0 +1,29 @@
+<html>
+    <head>
+       <title>Disappearing Ninjas</title>
+    </head>
+    <style>
+      body{
+        font-family: sans-serif;
+      }
+
+      img{
+        display: inline-block;
+        height:200px;
+        width:200px;
+      }
+    </style>
+    <body>
+      {% load staticfiles %}
+      {% if message %}
+        <p>No ninjas here</p>
+      {% elif all %}
+        <img src="{% static 'disappearingninjas/donatello.jpg' %}">
+        <img src="{% static 'disappearingninjas/michelangelo.jpg' %}">
+        <img src="{% static 'disappearingninjas/raphael.jpg' %}">
+        <img src="{% static 'disappearingninjas/leonardo.jpg' %}">
+      {% else %}
+        <img src="{% static image %}">
+      {% endif %}
+    </body>
+</html>

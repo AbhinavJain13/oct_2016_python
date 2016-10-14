@@ -1,0 +1,37 @@
+<html>
+    <head>
+       <title>title</title>
+    </head>
+    <body>
+          <div>
+          <h1>CodingDojo Wall</h1>
+          <p>Welcome, <b>{{session["user"][0]["first"]}} {{session["user"][0]["last"]}}.</b></p>
+          <form action='/logout'>
+            <input type="submit" value="Logout">
+          </form>
+
+          <form action='/postmessage' method='post'>
+            <textarea name="message" rows="5" cols="200">
+            </textarea>
+            <br>
+            <input type="submit" value="Post">
+          </form>
+
+          {% for indexm in range(session["message_query"]|length) %}
+            <h3>{{session["message_query"][indexm]["first"]}} {{session["message_query"][indexm]["last"]}} - {{session["message_query"][indexm]["updated_at"]}}</h3>
+            <p>{{session["message_query"][indexm]["message"]}}</p>
+            {% for indexc in range(session["comment_query"]|length) %}
+              {% if session["comment_query"][indexc]["message_id"] == session["message_query"][indexm]["id"] %}
+                <h3>{{session["comment_query"][indexc]["first"]}} {{session["comment_query"][indexc]["last"]}} - {{session["comment_query"][indexc]["updated_at"]}}</h3>
+                <p>{{session["comment_query"][indexc]["comment"]}}
+              {% endif %}
+            {% endfor %}
+            <form action='/postcomment/{{session["message_query"][indexm]["id"]}}' method='post'>
+              <textarea name="comment" rows="5" cols="150">
+              </textarea>
+              <br>
+              <input type="submit" value="Post">
+            </form>
+          {% endfor %}
+    </body>
+</html>
