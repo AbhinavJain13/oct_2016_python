@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Survey Results!</title>
+    <style>
+        span{
+            text-decoration: underline;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        {% if request.session.submit_count <= 0 %}
+        <h5 style="color: #660000;">You shouldn't be here...</h5>
+        <form action="/go_back">
+            {% csrf_token %}
+            <input type="submit" name="go_back" value="Go Back" style="color: white; background-color:blue;">
+        </form>
+        {% endif %}
+        {% if request.session.submit_count > 0%}
+        <div style="background-color: #AEA; border: 1px solid black;">
+            <h3>Thanks for submitting this form! You have submitted this form {{request.session.submit_count}} times now.</h3>
+        </div>
+        <div>
+            <h3 style="text-decoration: underline;">Submitted Information</h3>
+            <h4><span>Name:</span> {{request.session.full_name}}</h4>
+            <h4><span>Dojo Location:</span> {{request.session.location}}</h4>
+            <h4><span>Favorite Language:</span> {{request.session.fav_lang}}</h4>
+            <h4><span>Comment:</span></h4>
+            <h6 style="border: 1px solid black; height: 200px; width: 320px;">{{request.session.comment}}</h6>
+            <form action="/go_back" method="POST">
+                {% csrf_token %}
+                <input type="submit" name="go_back" value="Go Back" style="color: white; background-color:blue;">
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
