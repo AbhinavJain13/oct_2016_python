@@ -13,7 +13,7 @@ def index(request):
 def show_all(request):
     context = {
         "show_ninjas": 1,
-        "ninja_color": "all"
+        "ninja_color": "all.png"
     }
     return render(request,'turtles/index.html',context)
 
@@ -21,7 +21,16 @@ def show_all(request):
 def show(request,ninja_color):
     colors = ['blue','red','orange','purple']
     if ninja_color not in colors:
-        ninja_color = 'hacker'
+        ninja_color = 'hacker.jpg'
+    if ninja_color == 'blue':
+        ninja_color = 'blue.png'
+    if ninja_color == 'orange':
+        ninja_color = 'orange.png'
+    if ninja_color == 'purple':
+        ninja_color = 'purple.jpg'
+    if ninja_color == 'red':
+        ninja_color = 'red.png'
+
     context = {
         "show_ninjas": 1,
         "ninja_color": ninja_color
