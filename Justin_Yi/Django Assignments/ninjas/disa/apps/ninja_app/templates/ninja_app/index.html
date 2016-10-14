@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% load staticfiles %}
+      {% if img %}
+      <img src="{% static img %}" alt="" />
+      {% else %}
+      {% endif %}
+    {{img}}
+    {# <img src="{% static 'ninja_app/images/notapril.jpg' %}" alt="" />#}
+  </body>
+</html>
