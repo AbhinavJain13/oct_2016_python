@@ -60,7 +60,7 @@
       <div>
       <p>Activity Log</p>
       {% for val in request.session.activity reversed%}
-      <p>{{request.session.activity.val}}</p>
+      <p>{{val}}</p>
       {% endfor %}
       </div>
     </body>
