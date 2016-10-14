@@ -15,7 +15,6 @@ def show_all(request):
         "show_ninjas": 1,
         "ninja_color": "all"
     }
-
     return render(request,'turtles/index.html',context)
 
 # /ninjas/<ninja_color>
@@ -28,3 +27,6 @@ def show(request,ninja_color):
         "ninja_color": ninja_color
     }
     return render(request,'turtles/index.html',context)
+
+def catchall(request):
+    return redirect('/')
