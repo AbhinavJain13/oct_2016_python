@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'modmodels/css/main.css' %}"media="screen" title="no title"  charset="utf-8">
+
+</head>
+<body>
+
+<h1>just another brick in the wall</h1>
+
+{% if not request.session.current_user_id %}
+<h1>become a brick</h1>
+<form action='add_user/' method='post'>
+   {% csrf_token %}
+   <label for='first_name'>First Name</label>
+   <input type='text' name='first_name' id='first_name'>
+   <label for='last_name'>Last Name</label>
+   <input type='text' name='last_name' id='last_name'>
+   <label for='email'>Email</label>
+   <input type='text' name='email' id='email' value='erik@erik.com'>
+   <label for='password'>Password</label>
+   <input type='password' name='password' id='password'>
+   <input type='submit' value='submit'>
+</form>
+<hr/>
+<h1>login for bricks</h1>
+<form action='login/' method='post'>
+   {% csrf_token %}
+   <input type='text' name='email_login' id='email_login' value='erik@erik.com'>
+   <label for='password_login'>Password</label>
+   <input type='password' name='password_login' id='password_login'>
+   <input type='submit' value='submit'>
+</form>
+
+{% else %}
+
+<div class='brick'>
+   <h1>brick id: {{ request.session.current_user_id }}</h1>
+</div>
+
+<form action='add_message/' method='post'>
+   {% csrf_token %}
+   <input type='text' name='message' value='blah blah'>
+   <input type='submit' value='ADD MESSAGE'>
+</form>
+<br/>
+<form action='reset/' method='post'>
+   {% csrf_token %}
+   <input type='hidden' name='logout' value='logout'>
+   <input type='submit' value='LOGOUT'>
+</form>
+
+{% endif %}
+
+<hr/>
+<h2> Users </h2>
+{% for user in users %}
+<div class='brick'>
+{{ user.first_name }}
+{{ user.id }}
+</div>
+{% endfor %}
+
+<hr/>
+
+{% for msg in msgs %}
+   <h2> Message </h2>
+   {{ msg.message }} {{ msg.id}}<br/>
+
+   {% for comment in comments %}
+      {% if msg.id == comment.message_id.id %}
+         <h2> Comment </h2>
+         mid: {{ comment.message_id.id }}
+         cid: {{ comment.id }}
+         {{ comment.comment }}
+         <hr/>
+      {% endif %}
+   {% endfor %}
+
+   <form action='add_comment/' method="post">
+      {% csrf_token %}
+      <input type='textArea' rows='20' cols='20' name='comment'>
+      <input type='hidden' value='{{ msg.id }}' name='message_id' noteditable>
+      <button type='submit' value='Add Comment'>Add Comment</button>
+   </form>
+   <br/>
+{% endfor %}
+<hr/>
+
+<hr/>
+<h2> Comments </h2>
+{% for comment in comments %}
+id: {{ comment.message_id.id }}
+{{ comment.comment }}
+{{ comment.id }}
+{% endfor %}
+
+</body>
+</html>
