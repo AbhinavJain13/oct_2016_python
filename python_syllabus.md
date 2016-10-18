@@ -164,7 +164,7 @@ Assignments|
 ---|
 Friendships 2|
 Semi-Resful Routes **GitHub**|
-Secrets **GitHub**|
+[Dojo Secrets](https://github.com/madjaqk/oct_2016_python/blob/master/dojo_secrets.html) **GitHub**|
 
 Optional|
 ---|
