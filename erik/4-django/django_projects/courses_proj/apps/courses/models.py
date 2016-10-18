@@ -58,7 +58,8 @@ class Description(models.Model):
         Course,
         on_delete=models.CASCADE,
         primary_key=True,
-        default=None
+        default=None,
+        related_name='description'
     )
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)

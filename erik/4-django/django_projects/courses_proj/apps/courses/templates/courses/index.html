@@ -54,11 +54,9 @@ Email: {{ request.session.logged_in }}
 {% for course in courses %}
    Course Name: {{ course.name }}<br/>
    Course ID:   {{ course.id }}<br/>
+   Course Description: {{ course.description.description }}<br/>
 
-   {% for description in course.description_set.all %}
-      {{ description.description }}
-   {% endfor %}
-   Remove: <a href='courses/{{ course.id }}/delete/'>Delete</a>
+   Remove: <a href='course/{{ course.id }}/delete'>Delete</a>
    <hr/><br/>
 
 {% endfor %}

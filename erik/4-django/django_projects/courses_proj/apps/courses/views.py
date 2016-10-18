@@ -13,7 +13,7 @@ def index(request):
 
     context = {
         'users': User.objects.all(),
-        'courses': Course.objects.all(),
+        'courses': Course.objects.order_by('-id'),
         'descriptions': Description.objects.all()
     }
 
@@ -72,25 +72,22 @@ def course(request):
 
     return redirect('/')
 
-
-
 # /course/<id>/delete
 # Delete a course by ID
-def delete_course(request):
+def delete_course(request,id):
     print('*'*20)
     print('DELETE COURSE')
     print('*'*20)
-
+    Course.objects.filter(id=id).delete()
     return redirect('/')
-
 
 # /add_comment/<id>
 # Create a comment by course ID
 def add_comment(request):
+    # THIS IS NOT COMPLETED
     print('*'*20)
     print('ADD COMMENT')
     print('*'*20)
-
     return redirect('/')
 
 def logout(request):
