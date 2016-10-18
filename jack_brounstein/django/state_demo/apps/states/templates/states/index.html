@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<h1>Index</h1>
+		<h3>New State</h3>
+		<form action="{% url 'create' %}" method="POST">
+			{% csrf_token %}
+			<p>Name: <input type="text" name="name"></p>
+			<p>Governor: <input type="text" name="governor"></p>
+			<p><input type="submit" value="Create State"></p>
+		</form>
+		<ul>
+			{% for state in states %}
+				<li>{{state.name}} ({{state.id}})</li>
+			{% endfor %}
+		</ul>
+		<h3>New City</h3>
+		<form action="{% url 'create_city' %}" method="POST">
+			{% csrf_token %}
+			<p>Name: <input type="text" name="name"></p>
+			<p>State: 
+			<select name="state_id">
+				{% for state in states %}
+				<option value="{{state.id}}">{{state.name}}</option>
+				{% endfor %}
+			</select>
+			<p><input type="submit" value="Create City"></p>
+		</form>
+		<ul>
+			{% for city in cities %}
+				<li>{{city.name}}, {{city.state.name}}</li>
+			{% endfor %}
+		</ul>
+	</body>
+</html>

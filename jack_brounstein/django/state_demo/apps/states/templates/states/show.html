@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<h1>{{state.name}}</h1>
+		<h1>Governor: {{state.governor}}</h1>
+
+		<h3>Cities</h3>
+		<ul>
+			{% for city in state.cities.all %}
+				<li>{{city.name}}</li>
+			{% endfor %}
+		</ul>
+	</body>
+</html>

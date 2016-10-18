@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Show</title>
+	</head>
+	<body>
+		<h1>User Show</h1>
+		<h3>Name: {{name|capfirst}}</h3>
+		<form action="/users/process" method="post">
+			{% csrf_token %}
+			<input type="text" name="name">
+			<input type="submit">
+		</form>
+	</body>
+</html>
