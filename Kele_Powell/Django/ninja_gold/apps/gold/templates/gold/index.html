@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja Gold!</title>
+    {%load staticfiles%}
+    <link rel="stylesheet" type="text/css" href="{%static 'gold/css/main.css'%}" >
+  </head>
+  <body>
+
+  <div id="gold"><p>Your Gold: {{request.session.gold}}</p></div>
+    <div class="work">
+      <h2>Farm</h2>
+      <h3>(earns 10-20 gold)</h3>
+      <a href="/farm"><button  type="button" name="farm">Find Gold!</button></a>
+    </div>
+    <div class="work">
+      <h2>Cave</h2>
+      <h3>(earns 5-10 gold)</h3>
+  <a href="/cave"><button vtype="button" name="cave">Find Gold!</button></a>
+    </div>
+    <div class="work">
+      <h2>House</h2>
+      <h3>(earns 2-5 gold)</h3>
+  <a href="/house"><button  type="button" name="house">Find Gold!</button></a>
+    </div>
+    <div class="work">
+      <h2>Casino</h2>
+      <h3>(earns/takes 0-50 gold)</h3>
+  <a href="/casino"><button  type="button" name="casino">Find Gold!</button></a>
+    </div>
+    <a href="/clear"><button  type="button" name="clear">Start OVer!</button></a>
+
+      <h2>Activities</h2>
+
+      <div id="active">
+      {%for message in request.session.log reversed%}
+      <li class={{message.class}}>{{message.key}}</li>
+      {%endfor%}
+
+
+    </div>
+
+  </body>
+</html>

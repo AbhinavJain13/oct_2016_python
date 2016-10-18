@@ -1,0 +1,31 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+h3{
+  margin-top: 20px;
+}
+p{
+  margin-top: 10px;
+  display: inline-block;
+  text-indent: 20px;
+}
+button{
+  margin-top: 20px;
+  margin-left: 300px;
+}
+button[name='cancel']{
+  background-color: white;
+  color: black;
+  width: 160px;
+  height: 40px;
+  font-size: 1em;
+}
+button[name='confirm']{
+  background-color: red;
+  color: white;
+  width: 200px;
+  height: 40px;
+  font-size: 1em;
+
+}

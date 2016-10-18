@@ -1,0 +1,65 @@
+*{margin: 0;
+padding: 0;
+}
+#container{
+  width: 90%;
+  height: auto;
+  margin: auto;
+  margin-top: 50px;
+  list-style-type: none;
+}
+form{
+  width: 500px;
+  line-height: 1.5;
+
+
+}
+form li{
+  vertical-align: text-top;
+ font-weight:
+}
+form input{
+  margin-left: 80px;
+}
+form textarea{
+position: relative;
+left: 100px;
+bottom: 20px;
+}
+form input[name='submit']{
+  width: 70px;
+  height:30px;
+position: relative;
+left:150px;
+bottom: 30px;
+}
+table{
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+table th{
+  border: 1px solid black;
+}
+
+table .name{
+  width: 20%;
+  border: 1px solid black;
+    height: 10px;
+
+}
+td.desription{
+  width: 40%;
+  border: 1px solid black;
+    height: 10px;
+    overflow: auto;
+}
+table .updated{
+  width: 15%;
+  border: 1px solid black;
+    height: 10px;
+}
+table .action{
+  width: 15%;
+  border: 1px solid black;
+    height: 10px;
+}
