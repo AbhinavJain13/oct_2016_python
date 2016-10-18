@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello Django Survey Form!</title>
+</head>
+<body>
+    <div>
+        <div id="header">
+            <h1>Hello Survey Form!</h1>
+        </div>
+        <div id="main_content">
+            <div style="border: 1px black solid;" id="survey_box">
+                <form action="/request" method="POST" id="information">
+                    {% csrf_token %}
+                    <h3>Your Name:</h3>
+                    <input type="text" name="full_name">
+                    <h3>Dojo Location:</h3>
+                    <select name="location" form="information">
+                        <option value="Bellevue, WA">Bellevue, WA</option>
+                        <option value="Chicago, IL">Chicago, IL</option>
+                        <option value="Dallas, TX">Dallas, TX</option>
+                        <option value="Los Angeles, CA">Los Angeles, CA</option>
+                        <option value="Silicon Valley, CA">Silicon Valley, CA</option>
+                        <option value="Washington D.C.">Washington D.C.</option>
+                    </select>
+                    <h3>Favorite Language:</h3>
+                    <select name="fav_lang" form="information">
+                        <option value="C">C</option>
+                        <option value="C#">C#</option>
+                        <option value="C++">C++</option>
+                        <option value="CSS">CSS (Really??)</option>
+                        <option value="Java">Java</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Python">Python (Woo!)</option>
+                        <option value="Perl">Perl</option>
+                        <option value="R">R</option>
+                    </select>
+                    <h3>Comment:</h3>
+                    <input type="text" name="comment" style="border: 1px solid black; min-height: 100px; min-width: 170px">
+                    <input type="submit" value="Submit" style="color: white; background-color:blue;">
+                </form> <!--end of information form -->
+            </div> <!-- end of survey_box -->
+            <form action="/reset" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Reset (will reset all session data!)" style="color: white; background-color:blue;">
+            </form>
+        </div> <!-- end of main_content -->
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Survey Form</title>
+    {% load staticfiles %}
+      <!-- The line above tells Django to be ready to listen for static files -->
+      <link rel="stylesheet" href="{% static 'surveyFormApp/css/main.css' %}"media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Survey Form</h1>
+      <br><div class="green">
+        Thanks for submitting this form! You have
+        submitted this form {{request.session.count}} times now.
+      </div>
+      <br><form class="" action="/" method="get">
+      <h3><u>Submitted Information</u></h3>
+      <table>
+        <tr>
+          <td>Name:</td>
+          <td>{{request.session.name}}</td>
+        </tr>
+        <tr>
+          <td>Dojo Location:</td>
+          <td>{{request.session.location}}</td>
+        </tr>
+        <tr>
+          <td>Favorite Language:</td>
+          <td>{{request.session.language}}</td>
+        </tr>
+        <tr>
+          <td>Comment:</td>
+          <td>{{request.session.comment}}</td>
+        </tr>
+      </table>
+      <button type="submit" name="btnBack">Go Back</button>
+      </form>
+    </div>  </body>
+</html>

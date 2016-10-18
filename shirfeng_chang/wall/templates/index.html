@@ -1,0 +1,36 @@
+<html>
+    <head>
+       <title>title</title>
+    </head>
+    <body>
+      <div id="login">
+        <h1>Login</h1>
+        <form action='/login' method='post'>
+          {% if session["match"] == 1%}
+            <p>E-mail and password do not match</p>
+          {% endif %}
+          E-mail: <input type ="text" name="email">
+          Password: <input type ="password" name="password">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+      <div id="registration">
+        <h1>Register</h1>
+        <form action='/register' method='post'>
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                <p>{{message}}</p>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          First Name: <input type ="text" name="first">
+          Last Name: <input type ="text" name="last">
+          E-mail: <input type ="text" name="email">
+          Password: <input type ="password" name="password">
+          Confirm Password: <input type ="password" name="confirm">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+    </body>
+</html>

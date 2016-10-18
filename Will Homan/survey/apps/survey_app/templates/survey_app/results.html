@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Result</title>
+  </head>
+  <body>
+    <p>
+      Thanks for submitting this form! You have submitted this form {{request.session.count}} times now.
+    </p>
+    <div class="box">
+      <h1>Submitted Info</h1>
+      <table>
+        <tr>
+          <td>Name:</td>
+          <td>{{request.session.name}}</td>
+        </tr>
+        <tr>
+          <td>Dojo Location:</td>
+          <td>{{request.session.location}}</td>
+        </tr>
+        <tr>
+          <td>Favorite Language</td>
+          <td>{{request.session.language}}</td>
+        </tr>
+        <tr>
+          <td>Comment:</td>
+          <td>{{request.session.comment}}</td>
+        </tr>
+      </table>
+      <a href="/"><input type='submit' value='Go Back'></a>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Full Friends</title>
+</head>
+<body>
+    <div>
+        <h1>Friend List</h1>
+        <a href="/friends"><button id="new_friends">New Friends Page!</button></a>
+
+    </div>
+    <div>
+        {% for keys in table %}
+        <ul>
+            <li>
+                <ul>
+                    <li>Name: {{keys.first_name}} {{keys.last_name}}</li>
+                    <li>Email Address: {{keys.email}}</li>
+                    <li>Created at: {{keys.created_at}}</li>
+                    <li>ID: {{keys.id}}</li></li>
+                    <a href="/friends/{{keys.id}}/edit"> <button>Edit Friends</button></a>  <a href="/friends/{{keys.id}}/delete">  <button>Delete Friends</button></a>
+                </ul>
+        </ul>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
