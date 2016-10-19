@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Email Validation with DB</title>
+  </head>
+  <style>
+  .error{
+    color: white;
+    background-color: red;
+  }</style>
+  <body>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="error">
+          {% for message in messages %}
+            <p>{{message}}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    <form class="/email" action="/email" method="post">
+      <label for="first_name">Email:<input type="text" name="email" id="email"></label>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
