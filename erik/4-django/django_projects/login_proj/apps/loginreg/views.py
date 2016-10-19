@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse,redirect
 from .models import User
 import bcrypt
+from django.core.urlresolvers import reverse
 
 # Controllers -----------------------
 # /
@@ -13,6 +14,7 @@ def index(request):
     context = {
         'users' : User.objects.all()
     }
+    # return render(request,'loginreg/index.html',context)
     return render(request,'loginreg/index.html',context)
 
 # /registration
@@ -34,15 +36,16 @@ def registration(request):
             # session variables cant be set in the model
             request.session['user_id'] = new_user.id
             request.session['first_name'] = new_user.first_name
-            return redirect('/')
+            return redirect(reverse('user:index'))
         else:
             errors = u.get('errors')
             context= {
                 'errors': errors
             }
-            return render(request,'loginreg/index.html',context)
+            # return render(request,'loginreg/index.html',context)
+            return redirect(reverse('user:index'),kwargs={context:context})
     else:
-        return redirect('/')
+         return redirect(reverse('user:index'))
 
 # /logout
 # Logout a User
@@ -51,7 +54,7 @@ def logout(request):
     print('LOGIN')
     print('*'*20)
     del request.session['user_id']
-    return redirect('/')
+    return redirect(reverse('user:index'))
 
 # /login
 # Log in a User
@@ -59,17 +62,15 @@ def login(request):
     print('*'*20)
     print('LOGIN')
     print('*'*20)
-    if request.method == "POST":
-        loggedin = User.objects.login(request.POST['email'],request.POST['password'])
-        if loggedin:
-            request.session['user_id'] = new_user.id
-            request.session['first_name'] = new_user.first_name
-            return redirect('/')
-        else:
-            errors = {'login': 'Login attempt failed!'}
-            context= {
-                'errors': errors
-            }
-            return render(request,'loginreg/index.html',context)
+    u = User.objects.login(request.POST['email'],request.POST['password'])
+    print('LOGIN GOT A USER BACK',u)
+    if u.get('self'):
+        request.session['user_id'] = new_user.id
+        request.session['first_name'] = new_user.first_name
+        return redirect(reverse('user:index'))
     else:
-        return redirect('/')
+        errors = u.get('errors')
+        context= {
+            'errors': errors
+        }
+        return render(request,'loginreg/index.html',context)

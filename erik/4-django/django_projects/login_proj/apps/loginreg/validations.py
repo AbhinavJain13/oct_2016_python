@@ -5,7 +5,7 @@ def gen_password(password):
     print('PASSWORD ENCRYPTION IN PROCESS...')
     print('*'*20)
     print(bcrypt.hashpw(password,bcrypt.gensalt()))
-    return bcrypt.hashpw(password,bcrypt.gensalt())
+    return bcrypt.hashpw(password.encode(),bcrypt.gensalt())
 
 def validate_email(email):
     print('*'*20)

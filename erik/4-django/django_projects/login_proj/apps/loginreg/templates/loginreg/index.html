@@ -13,15 +13,13 @@
 <h3> Success! Welcome {{ request.session.first_name }}</h3>
 <hr/>
 Now that you've enjoyed your stay on Fantasy Island, it's time to log you out....<br/>
-<form action='/logout'>
-   <button type='submit' valuke='submit'>Logout</button>
-</form>
+<a href='{% url 'user:logout' %}'>Logout</a>
 
 {% else %}
 <!-- There is not a logged in user -->
 <br/>
 <h3>Registration</h3>
-<form action='/registration' method='post'>
+<form action='{%url 'user:register' %}' method='post'>
    {% csrf_token %}
    <label for='fname'>First Name</label>
    <input type='text' name='first_name' id='fname'><br/>
@@ -39,7 +37,7 @@ Now that you've enjoyed your stay on Fantasy Island, it's time to log you out...
 <hr/>
 <br/>
 <h3>Login</h3>
-<form action='/login' method='post'>
+<form action='{%url 'user:login' %}' method='post'>
    {% csrf_token %}
    <label for='email'>Email</label>
    <input type='email' name='email' id='email'><br/>
