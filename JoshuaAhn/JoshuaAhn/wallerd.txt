@@ -1,0 +1,51 @@
+from __future__ import unicode_literals
+
+
+from django.db import models
+
+
+
+class users(models.Model):
+    
+
+first_name = models.CharField(max_length=255)
+ 
+last_name = models.CharField(max_length=255)
+    
+email = models.CharField(max_length=255)
+    
+password = models.CharField(max_length=255)
+    
+created_at = models.DateTimeField(auto_now_add= True)
+    
+update_at = models.DateTimeField(auto_now=True)
+
+
+
+class messages(models.Model):
+    
+message = models.TextField(max_length=1000)
+    
+# one to many relationship
+    
+user_id= models.ForeignKey(users)
+    
+created_at = models.DateTimeField(auto_now_add=True)
+    
+update_at = models.DateTimeField(auto_now=True)
+
+
+
+class messages(models.Model):
+    
+comment = models.TextField(max_length=1000)
+    
+# one to many relationship
+    
+message_id = models.ForeignKey(messages)
+    
+user_id= models.ForeignKey(users)
+    
+created_at = models.DateTimeField(auto_now_add=True)
+    
+update_at = models.DateTimeField(auto_now=True)
