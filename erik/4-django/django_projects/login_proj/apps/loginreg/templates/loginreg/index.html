@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title></title>
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'loginreg/css/main.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+<!-- If there is a logged in user, show this.... -->
+{% if request.session.user_id %}
+
+<h3> Success! Welcome {{ request.session.first_name }}</h3>
+<hr/>
+Now that you've enjoyed your stay on Fantasy Island, it's time to log you out....<br/>
+<form action='/logout'>
+   <button type='submit' valuke='submit'>Logout</button>
+</form>
+
+{% else %}
+<!-- There is not a logged in user -->
+<br/>
+<h3>Registration</h3>
+<form action='/registration' method='post'>
+   {% csrf_token %}
+   <label for='fname'>First Name</label>
+   <input type='text' name='first_name' id='fname'><br/>
+   <label for='lname'>Last Name</label>
+   <input type='text' name='last_name' id='lname'><br/>
+   <label for='eml'>Email</label>
+   <input type='email' name='email' id='eml'><br/>
+   <label for='pw1'>Password</label>
+   <input type='password' name='pw1' id='pw1'><br/>
+   <label for='pw2'>Password Confirm</label>
+   <input type='password' name='pw2' id='pw2'><br/>
+   <button type='submit' value='Register'>Register</button><br/>
+</form>
+<br/>
+<hr/>
+<br/>
+<h3>Login</h3>
+<form action='/login' method='post'>
+   {% csrf_token %}
+   <label for='email'>Email</label>
+   <input type='email' name='email' id='email'><br/>
+   <label for='password'>Password</label>
+   <input type='password' name='password' id='password'><br/>
+   <button type='submit' value='login'>Login</button><br/>
+</form>
+<br/>
+<hr/>
+<br/>
+
+<!-- Show All Users -->
+<hr/>
+<h3>Users: </h3>
+{% for user in users %}
+   {{ user.id }} | {{ user.first_name }}<br/>
+{% endfor %}
+<br/>
+<hr/>
+<br/>
+
+<!-- Show All Errors -->
+{% if errors %}
+<hr/>
+<h3>Errors: </h3>
+{% for key, value in errors.items %}
+   {{ key }} : {{ value }}<br/>
+<hr/>
+{% endfor %}
+<br/>
+{% endif %}
+
+<!-- closes if logged in user -->
+{% endif %}
+
+</body>
+</html>
