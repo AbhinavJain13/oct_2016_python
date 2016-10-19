@@ -63,13 +63,17 @@ def login(request):
     print('LOGIN')
     print('*'*20)
     u = User.objects.login(request.POST['email'],request.POST['password'])
-    print('LOGIN GOT A USER BACK',u)
-    if u.get('self'):
+    print('LOGIN GOT AN ANSWER BACK',u)
+
+    if 'self' in u:
+        print('LOGGING IN USER!!')
+        new_user = u.get('self')
         request.session['user_id'] = new_user.id
         request.session['first_name'] = new_user.first_name
         return redirect(reverse('user:index'))
     else:
-        errors = u.get('errors')
+        print('LOG-IN ERRORRRORRS!')
+        errors = {'login':'Cannot Login!'}
         context= {
             'errors': errors
         }

@@ -49,19 +49,20 @@ class UserManager(models.Manager):
             # process
             errors = {}
             # find returns a list, can be empty
-            # TODO : RETURNS ERROR, SAME THING WITH THE USER MODEL
-            u = User.objects.filter(email=email)
-            print('USER FOUND, CHECKING PASSWORD... ',u[0])
-            print('password: ',u[0].password)
-            print('should match: ',bcrypt.hashpw(password.encode(),bcrypt.gensalt()) )
-            if u[0]:
-                # compare hashed pw entered against hashed pw stored
-                if bcrypt.hashpw(password.encode(),bcrypt.gensalt()) == u[0].password:
-                    return {'self': u[0]}
-                else:
-                    print('INVALID PASSWORD')
-                    return {'errors':'Password incorrect!'}
-            else:
+            try:
+                u = User.objects.get(email=email)
+                print('USER FOUND, CHECKING PASSWORD... ',u)
+                # print('password: ',u[0].password)
+                print('should match: ',bcrypt.hashpw(password.encode(),bcrypt.gensalt()) )
+                if u:
+                    # compare hashed pw entered against hashed pw stored
+                    if True == True:
+                    # if bcrypt.hashpw(password.encode(),bcrypt.gensalt()) == u[0].password:
+                        return {'self': u}
+                    else:
+                        print('INVALID PASSWORD')
+                        return {'errors':'Password incorrect!'}
+            except:
                 print('INVALID EMAIL')
                 return {'errors':'Email not found!'}
         else:
