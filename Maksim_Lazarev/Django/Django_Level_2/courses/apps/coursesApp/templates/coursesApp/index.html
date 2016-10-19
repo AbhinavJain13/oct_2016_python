@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Courses</title>
+    {% load staticfiles %}
+      <!-- The line above tells Django to be ready to listen for static files -->
+      <link rel="stylesheet" href="{% static 'coursesApp/css/main.css' %}"media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <h3>Add a new course</h3>
+      <form id="frmCourseAdd" class="" action="/courses/add" method="post">
+        {% csrf_token %}
+        <div class="row height20">
+          <label class="height20" for="courseName">Name:</label>
+          <input class="height20 inpTxt" type="text" name="courseName" value="">
+        </div>
+        <div class="row height60">
+          <label for="courseDescription">Description:</label>
+          <textarea class="inpTxt" name="courseDescription" rows="4" cols="40"></textarea>
+        </div>
+        <button id="btnCourseAdd" type="submit" name="btnCourseAdd">Add</button>
+        <!-- <input class="inpTxt" type="text" name="courseDescription" value=""> -->
+      </form>
+      <h3>Courses</h3>
+      <table id="tblCourses">
+        <tr>
+          <th style="width: 45%">Course Name</th>
+          <th style="width: 15%">Description</th>
+          <th style="width: 30%">Date Added</th>
+          <th style="width: 10%">Actions</th>
+        </tr>
+        {% for course in courses %}
+          <tr>
+            <td>{{course.name}}</td>
+            <td>{{course.description}}</td>
+            <td>{{course.created_at}}</td>
+            <td><a href="/courses/destroy/{{course.id}}">Remove</a></td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>
