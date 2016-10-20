@@ -1,0 +1,23 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <title>Login and Registration</title>
+    {% load staticfiles %}
+      <!-- The line above tells Django to be ready to listen for static files -->
+      <link rel="stylesheet" href="{% static 'logRegApp/css/main.css' %}"media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Success! Welcome, {{user.first_name}}!</h1>
+            <form class="frmUser" action="/user/delete" method="post">
+              {% csrf_token %}
+              <div class="inline">{{user.first_name}}</div>
+              <div class="inline">{{user.last_name}}</div>
+              <div class="inline">{{user.email}}</div>
+              <div class="inline">{{user.created_at|date:"m/d/Y P"}}</div>
+              <!-- <a class="inline" href="/user/edit"><button type="button" name="btnEdit">Edit</button></a>
+              <button class="inline" type="submit" name="btnDelete">Delete</button> -->
+            </form>
+    </div>
+  </body>
+</html>
