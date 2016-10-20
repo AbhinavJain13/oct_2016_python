@@ -19,3 +19,6 @@ class Player(models.Model):
 	teams = models.ManyToManyField(Team, related_name="players")
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
+
+	def __str__(self):
+		return self.name
