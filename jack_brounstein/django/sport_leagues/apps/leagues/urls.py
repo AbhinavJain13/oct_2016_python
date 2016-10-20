@@ -9,4 +9,5 @@ urlpatterns = [
 	url(r"^create_league", views.create_league, name="create_league"),
 	url(r"^create_team", views.create_team, name="create_team"),
 	url(r"^create_player", views.create_player, name="create_player"),
+	url(r"^remove_player_from_team/(?P<team_id>\d+)/(?P<player_id>\d+)/$", views.remove_player_from_team, name="remove_player_from_team")
 ]

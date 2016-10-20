@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
+from django.db.models import Count
 from .models import League, Team, Player
 
 # Create your views here.
 def index(request):
 	context = {
+		"yankees": Player.objects.filter(teams__team_name="Yankees").filter(name__lt="J"),
+		"big_teams": Team.objects.annotate(num_players=Count("players")).filter(num_players__gt=2),
 		"leagues": League.objects.all(),
 		"teams": Team.objects.all(),
 		"players": Player.objects.all(),
@@ -33,4 +36,17 @@ def create_player(request):
 	return redirect("index")
 
 def add_player_to_team(request):
+	this_team = Team.objects.get(id=request.POST["team_id"])
+	this_player = Player.objects.get(id=request.POST["player_id"])
+
+	this_team.players.add(this_player)
+
+	return redirect("index")
+
+def remove_player_from_team(request, team_id, player_id):
+	this_team = Team.objects.get(id=team_id)
+	this_player = Player.objects.get(id=player_id)
+
+	this_player.teams.remove(this_team)
+
 	return redirect("index")

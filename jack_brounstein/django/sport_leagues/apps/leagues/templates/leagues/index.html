@@ -12,6 +12,8 @@
 		</style>
 	</head>
 	<body>
+		<h3>Yankees: {{yankees}}</h3>
+		<h3>Teams: {{big_teams}}</h3>
 		<h1>Leagues/Teams</h1>
 		<table>
 			<tr><th>League</th>
@@ -19,27 +21,45 @@
 			</tr>
 			{% for league in leagues %}
 				<tr>
-					<td>{{league.name}}</td>
-					<td>
-						<ul>
-							{% for team in league.teams.all %}
-								<li>{{team.city}} {{team.team_name}}
-									{% if team.players.count > 0 %}
-										({{team.players.all|join:", "}})
-									{% endif %}
-								</li>
-							{% endfor %}
-						</ul>
-					</td>
+<td>{{league.name}}</td>
+<td>
+	<ul>
+		{% for team in league.teams.all %}
+			<li>{{team.city}} {{team.team_name}}
+				{% if team.players.count > 0 %}
+					({% for player in team.players.all %}
+						<a href="{% url 'remove_player_from_team' team.id player.id %}">{{player}}</a>
+					{% endfor %})
+				{% endif %}
+			</li>
+		{% endfor %}
+	</ul>
+</td>
 				</tr>
 			{% endfor %}
 		</table>
 		<h1>Players</h1>
 		<ul>
 			{% for player in players %}
-				<li>{{player.name}}</li>
+				<li>{{player}} ({{player.updated_at}})</li>
 			{% endfor %}
 		</ul>
+		<div class="create_form">
+			<form action="{% url 'add_player_to_team' %}" method="POST">
+				{% csrf_token %}
+				<p><select name="player_id">
+					{% for player in players %}
+						<option value="{{player.id}}">{{player.name}}</option>
+					{% endfor %}
+				</select>
+				<select name="team_id">
+					{% for team in teams %}
+						<option value="{{team.id}}">{{team.name}}</option>
+					{% endfor %}
+				</select>
+				<input type="submit" value="Submit"></p>
+			</form>
+		</div>
 		<div class="create_form">
 			<h3>New League</h3>
 			<form action="{% url 'create_league' %}" method="post">
