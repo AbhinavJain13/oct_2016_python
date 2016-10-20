@@ -1,0 +1,96 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+.wrapper{
+  margin: 0 auto;
+  padding: 50px;
+}
+#frmCourseAdd{
+  width: 400px;
+  height: 120px;
+  position: relative;
+}
+.row{
+  position: relative;
+  padding-bottom: 5px;
+  height: auto;
+}
+.inpTxt{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  display: inline-block;
+  width: 300px;
+}
+.height20{
+  height: 20px;
+  line-height: 20px;
+}
+.height60{
+  margin-top: 5px;
+  height: 60px;
+}
+#btnCourseAdd {
+  margin-top: 5px;
+  position: absolute;
+  width: 50px;
+  height: 25px;
+  right: 0;
+  background-color: green;
+  color: white;
+  border: 2px solid black;
+}
+table, th, td {
+     border-collapse: collapse;
+}
+#tblCourses{
+  border: 1px solid black;
+  width: 100%;
+  text-align: left;
+  border-spacing: 0;
+}
+#tblCourses th,
+#tblCourses td {
+    /*border: 1px solid black;*/
+    padding-left: 5px;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+#tblCourses th{
+  background-color: lightgrey;
+}
+#tblCourses tr:nth-child(even) {
+     background-color: #eee;
+}
+#tblCourses tr:nth-child(odd) {
+     background-color: #fff;
+}
+#wrapperDestroy{
+  margin: 0 auto;
+  padding: 50px;
+  text-align: center;
+}
+#tblCoursesDestroy{
+  margin: 0 auto;
+  margin-top: 20px;
+  text-align: left;
+}
+#frmCourseDestroy {
+  display: inline-block;
+}
+#divDestroyBtns {
+  margin-top: 20px;
+}
+#btnDelNo {
+    border: 2px solid black;
+    height: 25px;
+    width: 50px;
+}
+#btnDelYes{
+  background-color: red;
+  border: 2px solid black;
+  color: white;
+  height: 25px;
+  width: 200px;
+}

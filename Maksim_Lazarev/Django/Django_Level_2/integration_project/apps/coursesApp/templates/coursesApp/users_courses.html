@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Courses</title>
+    {% load staticfiles %}
+      <!-- The line above tells Django to be ready to listen for static files -->
+      <link rel="stylesheet" href="{% static 'coursesApp/css/main.css' %}"media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <form class="" action="{% url 'coursesApp:users_courses' %}" method="post">
+        {% csrf_token %}
+        <select name="Users">
+          <option value="" disabled="disabled" selected="selected">Users</option>
+          {% for user in users %}
+            <option value="{{user.id}}">{{user.first_name}} {{user.last_name}}</option>
+          {% endfor %}
+        </select>
+        <select name="Courses">
+          <option value="" disabled="disabled" selected="selected">Courses</option>
+          {% for course in courses %}
+            <option value="{{course.id}}">{{course.name}} {{course.description}}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" name="btnUserCourseAdd">Add User To Course</button>
+      </form>
+      <table id="tblCourses" style="width: 50%; margin-top:20px;">
+        <tr>
+          <th>Course</th>
+          <th>Title</th>
+          <th>Number of Users</th>
+        </tr>
+        {% for course in courses %}
+          {% if course.user.count %}
+            <tr>
+              <td>{{course.name}}</td>
+              <td>{{course.description}}</td>
+              <td>{{course.user.count}}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </table>
+      <br><a href="{% url 'coursesApp:index' %}"><h4><< Return Home</h4></a>
+    </div>
+  </body>
+</html>

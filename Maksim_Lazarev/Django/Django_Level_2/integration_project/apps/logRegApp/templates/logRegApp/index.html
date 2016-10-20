@@ -1,0 +1,61 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <title>Login and Registration</title>
+    {% load staticfiles %}
+      <!-- The line above tells Django to be ready to listen for static files -->
+      <link rel="stylesheet" href="{% static 'logRegApp/css/main.css' %}"media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+    <div class="wrapper">
+      {% if messages %}
+        <ul class="msg">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            <!-- {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %} -->
+              {{ message }}
+          </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <h1>Login</h1>
+      <br><form class="frmUserReg" action="{% url 'logRegApp:validateUser' %}" method="post">
+          {% csrf_token %}
+        <div class="block">
+          <label for="email">Email:</label>
+          <input type="email" name="email" value="">
+        </div>
+        <div class="block">
+          <label for="password">Password</label>
+          <input type="password" name="password" value="">
+        </div>
+        <button id="btnLog" type="submit" name="button" value="btnLog">Login</button>
+      </form>
+      <br><h1>Registration</h1>
+      <br><form class="frmUserReg" action="{% url 'logRegApp:validateUser' %}" method="post">
+          {% csrf_token %}
+        <div class="block">
+          <label for="first_name">First Name:</label>
+          <input type="text" name="first_name" value="">
+        </div>
+        <div class="block">
+          <label for="last_name">Last Name:</label>
+          <input type="text" name="last_name" value="">
+        </div>
+        <div class="block">
+          <label for="email">Email:</label>
+          <input type="email" name="email" value="">
+        </div>
+        <div class="block">
+          <label for="password">Password</label>
+          <input type="password" name="password" value="">
+        </div>
+        <div class="block">
+          <label for="confirm_password">Confirm Password</label>
+          <input type="password" name="confirm_password" value="">
+        </div>
+      <button id="btnReg" type="submit" name="button" value="btnReg">Register</button>
+      </form>
+    </div>
+  </body>
+</html>
