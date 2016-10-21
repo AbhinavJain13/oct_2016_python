@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title></title>
+   </head>
+   <body>
+   <form action='create_user' method='post'>
+      {% csrf_token %}
+      <input type='text' name='name'>
+      <button type='submit' value='submit'>submit</button>
+   </form>
+
+   <br/>
+   <hr/>
+
+   {% for user in users %}
+      User: {{user.id}} | {{ user.name }}<br/>
+      {% for friendship in user.usersfriend.all  %}
+        <b>friend: {{friendship.friend.name}}</b><br/>
+       {% endfor %}
+       {% for friendship in user.friendsfriend.all  %}
+         <b>friend: {{friendship.friend.name}}</b><br/>
+        {% endfor %}
+   {% endfor %}
+
+   <br/>
+   <hr/>
+
+   <form action='make_friends' method='post'>
+      {% csrf_token %}
+      <select name='user1'>
+         {% for user in users %}
+            <option value='{{user.id}}'>{{ user.name }}</option>
+         {% endfor %}
+      </select>
+      <select name='user2'>
+         {% for user in users %}
+            <option value='{{user.id}}'>{{ user.name }}</option>
+         {% endfor %}
+      </select>
+      <button type='submit'>submit</button>
+
+   </form>
+
+
+
+   </body>
+</html>
