@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title></title>
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'courses/css/main.css' %}"media="screen" title="no title"  charset="utf-8">
+
+</head>
+<body>
+
+<!-- If logged in, show .... -->
+{% if request.session.logged_in %}
+
+Id: {{ request.session.logged_in }}
+<br/>
+<form action='{% url 'courses:logout'  %}'>
+   {% csrf_token %}
+   <button type="submit" value="submit">Logout</button>
+</form>
+<br/>
+<hr/>
+
+<h3>Enter a New UW Course:
+<form action='{% url 'courses:addcourse' %}' method='post'>
+   {% csrf_token %}
+   <label for='course_name'>Name:</label>
+   <input type='text' name='course_name' id='course_name'>
+   <br/>
+   <label for='desc'>Description:</label>
+   <textarea rows='5' cols='5' name='course_description' id='desc'></textarea>
+   <button type='submit' value='submit'>Add Course</button>
+</form>
+<br/>
+<hr/><br/>
+<h3>Users Who Are Registered at UW:</h3>
+{% for user in users %}
+   {{ user.email }} <br/>
+   <p>In Course: </p>
+   {% for course in user.course.all %}
+   {{ course.name }}
+   {% endfor %}
+   <!-- how to display user course? -->
+{% endfor %}
+<br/>
+<hr/>
+<h3>Courses at UW:</h3>
+{% for course in courses %}
+   Course Name: {{ course.name }}<br/>
+   Course ID:   {{ course.id }}<br/>
+   Course Description: {{ course.description.description }}<br/>
+   Remove: <a href='{% url "courses:delete" id=course.id %}'>Delete</a>
+   <hr/><br/>
+{% endfor %}
+
+<hr/><br/>
+
+<form action='{% url "courses:usercourses" %}' method='post'>
+   {% csrf_token %}
+   <h3>Users Who Are Registered at UW:</h3>
+   <select name='users'>
+   {% for user in users %}
+      <option value='{{ user.email }}'>{{ user.email }}</option>
+   {% endfor %}
+   </select>
+   <hr/>
+   <br/>
+   <h3>Courses at UW:</h3>
+   <select name='course'>
+   {% for course in courses %}
+      <option value='{{ course.id }}'>{{ course.name }}</option>
+   {% endfor %}
+   </select>
+   <hr/>
+   <br/>
+   <button type='submit' value='submit'>Add User To Course</button>
+</form>
+
+<!-- Else, hide.... -->
+{% else %}
+
+<h3> Login with a Valid Email</h3>
+<form action='{% url "courses:login" %}' method='post'>
+   {% csrf_token %}
+   <label for='email'>Enter Email</label>
+   <input type='text' name='email' id='email'>
+   <br/>
+   <button type='submit' value='submit'>Submit</button>
+</form>
+<br/>
+<hr/>
+
+{% endif %}
+
+</body>
+</html>
